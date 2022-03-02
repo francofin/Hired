@@ -1,0 +1,33 @@
+{
+  "name": "Hired",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server && npm run watch",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "test:dev": "concurrently \"cd server && npm run test\" \"cd client && npm run test\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "deploy": "concurrently \"cd client && npm run build\" \"cd server && npm start\"",
+    "deploy-cluster": "concurrently \"cd client && npm run build\" \"cd server && npm run cluster\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francofin/Hired.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francofin/Hired/issues"
+  },
+  "homepage": "https://github.com/francofin/Hired#readme",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "dotenv": "^16.0.0",
+    "helmet": "^5.0.2",
+    "ifenv": "^0.1.1"
+  }
+}
