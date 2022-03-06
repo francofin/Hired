@@ -1,4 +1,5 @@
-import * as firebase from "firebase";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -15,15 +16,17 @@ const firebaseConfig = {
   measurementId: "G-JTZFWYYTV4"
 };
 
+
+
 // Initialize Firebase
-const fireBaseApp = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
-const fireBaseAuth = firebase.auth();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export const fireBaseAuth = getAuth(app);
+export const googleAuthProvider = new GoogleAuthProvider();
 
-export default {
-    fireBaseAuth,
-    googleAuthProvider
-};
+// export default {
+//     fireBaseAuth,
+//     googleAuthProvider
+// };
 

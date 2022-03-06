@@ -2,22 +2,25 @@ import UserMenu from "./UserMenu";
 import SearchForm from "./SearchForm";
 import menu from "../../data/menu.json";
 import DropdownMenuItem from "./DropdownMenuItem";
-import { AuthContext } from "../../utils/authContext";
-import React, { useEffect, useState, useContext } from "react";
 import UseWindowSize from "../../hooks/UseWindowSize";
+import { AuthContext } from "../../utils/authContext";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Link, useHistory} from 'react-router-dom';
 
 
 
 const Header = (props) => {
 
   const {state, dispatch} = useContext(AuthContext);
-  const [parentName, setParentName] = useState(false)
-  const [collapsed, setCollapsed] = useState(false)
-  const size = UseWindowSize()
+  let history = useHistory();
+  const [parentName, setParentName] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  const {user} = state;
+  const size = UseWindowSize();
   const onLinkClick = (parent) => {
     size.width < 991 && setCollapsed(!collapsed)
     setParentName(parent)
@@ -53,9 +56,7 @@ const Header = (props) => {
 
   console.log("Logged State", state);
 
-  const updateUser = () =>{
-    dispatch({type:"LOGGED_IN_USER", payload:"Francois"})
-  }
+
 
   useEffect(highlightDropdownParent, [])
   return (
@@ -75,7 +76,7 @@ const Header = (props) => {
             {/* NAVBAR BRAND */}
             <Link to="/" className="py-1 navbar-brand">  
                 <img
-                  src="/content/svg/hired.svg"
+                  src="/content/svg/logo.svg"
                   width={138}
                   height={31}
                   alt="Directory logo"
@@ -114,8 +115,8 @@ const Header = (props) => {
                 menu.map((item) =>
                   item.dropdown || item.megamenu ? (
                     // show entire menu to unlogged user or hide items that have hideToLoggedUser set to true
-                    !props.headerData.loggedUser ||
-                    (props.headerData.loggedUser && !item.hideToLoggedUser) ? (
+                    !props.userState.user ||
+                    (props.userState.user && !item.hideToLoggedUser) ? (
                       // DROPDOWN ITEM
                       <DropdownMenuItem
                         onLinkClick={onLinkClick}
@@ -126,8 +127,8 @@ const Header = (props) => {
                     ) : (
                       ""
                     )
-                  ) : (props.headerData.loggedUser && !item.hideToLoggedUser) ||
-                    !props.headerData.loggedUser ? (
+                  ) : (props.userState.user && !item.hideToLoggedUser) ||
+                    !props.userState.user ? (
                     // NAV ITEM
                     <Nav.Item
                       key={item.title}
@@ -156,7 +157,7 @@ const Header = (props) => {
                   )
                 )}
               {/* USER MENU */}
-              {props.headerData.loggedUser && <UserMenu onLinkClick={onLinkClick} />}
+              {props.userState.user && <UserMenu onLinkClick={onLinkClick} />}
               {/* USER MENU */}
             </Nav>
             {/* END MENU */}

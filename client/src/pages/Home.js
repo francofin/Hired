@@ -1,15 +1,19 @@
-import React, {useState, useContext} from "react";
+import {Header} from '../components';
 import blog from "../data/blog.json";
-import {useHistory} from 'react-router-dom';   
 import data from "../data/index.json";
 import { Link } from 'react-router-dom';
-import {Header} from '../components';
+import {useHistory} from 'react-router-dom';   
+import React, {useState, useContext} from "react";
+import { AuthContext } from '../utils/authContext';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import {Image, Swiper, SearchBar, LastMinute, Guides, Instagram, CardPost, SwiperTestimonial, Icon} from "../components";
 
 
+const Index = () => {
+
+  
 const properties = {
   nav: {
     light: true,
@@ -19,15 +23,13 @@ const properties = {
   title: "Homepage",
 }
 
-
-const Index = () => {
+const {state, dispatch} = useContext(AuthContext);
 
 
   return (
-    
-
       <div style={{paddingTop:'72px'}}>
-      <Header headerData={properties}/>
+      <Header headerData={properties} userState={state}/>
+      <main>
       <section className="hero-home">
         <Swiper
           className="hero-slider"
@@ -173,6 +175,7 @@ const Index = () => {
       )}
 
       <Instagram />
+      </main>
       </div>
 
   )

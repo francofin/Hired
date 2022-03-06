@@ -6,9 +6,9 @@ import "swiper/css/navigation";
 import "./scss/style.default.scss";
 import {SvgIcons, Footer} from './components';
 import SSRProvider from "react-bootstrap/SSRProvider";
-import {SignUp, Login, Home, Internships, UserProfile} from "./pages";
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
+import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp} from "./pages";
 import {ApolloClient, InMemoryCache, ApolloProvider,useQuery,gql} from "@apollo/client";
 
 
@@ -29,6 +29,7 @@ function App() {
             <Route exact path ="/intern" component = {Internships} />
             <Route exact path ="/login" component = {Login} />
             <Route exact path ="/signup" component = {SignUp} />
+            <Route exact path ="/completeregistration" component = {CompleteSignUp} />
           </>
         <Footer />
         <SvgIcons />

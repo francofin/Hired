@@ -1,21 +1,13 @@
+import swal from 'sweetalert';
 import React, {useState} from "react";
-import {  Link } from 'react-router-dom';
-import {Image, Icon} from "../components";
+import { Link } from 'react-router-dom';
+import {fireBaseAuth} from '../utils/firebase';
+import {Image, Icon, Spinner} from "../components";
+import { sendSignInLinkToEmail } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       title: "Sign up",
-//       hideHeader: true,
-//       hideFooter: true,
-//       noPaddingTop: true,
-//     },
-//   }
-// }
 
 const properties  = {
   title: "Sign up",
@@ -28,15 +20,31 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
- const handleSubmit = () =>{
-
-
+ const handleSubmit = async(e) =>{
+   e.preventDefault();
+   setLoading(true);
+   const auth = fireBaseAuth;
+   const config = {
+     url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+     handleCodeInApp: true
+   }
+  await sendSignInLinkToEmail(auth, email, config);
+  window.localStorage.setItem('hiredSignInEmail', email);
+  swal({
+    title: `Success, Email sent to ${email}, Please check your email to complete your registration!`,
+    icon: "success",
+  });
+  setEmail("");
+  setLoading(false);
+  console.log("clicked")
+    
   }
 
+  console.log("AUTH", fireBaseAuth)
 
   return (
-    
     <Container fluid className="px-3">
+      {loading ? <Spinner /> : ""}
       <Row className="min-vh-100">
         <Col md="8" lg="6" xl="5" className="d-flex align-items-center">
           <div className="w-100 py-5 px-md-5 px-xxl-6 position-relative">
@@ -49,9 +57,8 @@ const Signup = () => {
               />
               <h2>Sign up</h2>
               <p className="text-muted">
-                His room, a proper human room although a little too small, lay
-                peacefully between its four familiar walls. A collection of
-                textile samples lay spread out on the table.
+                Please enter a valid, email, we'll send a confirmation to get you all set up and on your career journey.
+                Congrations on taking your first step and we're proud to help you along the way.
               </p>
             </div>
             <Form className="form-validate" onSubmit={handleSubmit}>
@@ -68,30 +75,8 @@ const Signup = () => {
                   disabled = {loading}
                 />
               </div>
-              <div className="mb-4">
-                <Form.Label htmlFor="loginPassword">Password</Form.Label>
-                <Form.Control
-                  name="loginPassword"
-                  id="loginPassword"
-                  type="password"
-                  placeholder="Password"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Form.Label htmlFor="loginPassword2">
-                  Confirm your password
-                </Form.Label>
-                <Form.Control
-                  name="loginPassword2"
-                  id="loginPassword2"
-                  type="email"
-                  placeholder="Password"
-                  required
-                />
-              </div>
               <div className="d-grid">
-                <Button size="lg" disabled={!email || loading}>Sign up</Button>
+                <Button size="lg" type="submit" disabled={!email || loading}>Sign up</Button>
               </div>
             </Form>
             <hr data-content="OR" className="my-3 hr-text letter-spacing-2" />

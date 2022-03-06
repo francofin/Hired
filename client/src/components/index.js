@@ -11,6 +11,7 @@ export {default as ReviewForm } from './ReviewForm';
 export {default as RichSwiper } from './RichSwiper';
 export {default as CardRoom } from './CardRoom';
 export {default as Instagram } from './Instagram';
+export {default as Spinner } from './Spinner';
 export {default as SwiperTestimonial } from './SwiperTestimonial';
 export {default as SearchBar } from './SearchBar';
 export {default as CardPost } from './CardPost';

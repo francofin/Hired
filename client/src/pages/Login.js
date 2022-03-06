@@ -1,20 +1,13 @@
-import React, { useState } from "react";
-import {  Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import {Image, Icon} from "../components";
+import { AuthContext } from '../utils/authContext';
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from 'react-router-dom';
+import {fireBaseAuth, googleAuthProvider} from '../utils/firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       title: "Sign in",
-//       hideHeader: true,
-//       hideFooter: true,
-//       noPaddingTop: true,
-//     },
-//   }
-// }
+import { signInWithEmailAndPassword, getIdTokenResult } from "firebase/auth";
 
 const properties  = {
   title: "Sign in",
@@ -25,11 +18,35 @@ const properties  = {
 
 const Login = () => {
 
+  const {dispatch} = useContext(AuthContext);
   const [email, setEmail] = useState("name@address.com");
+  const [password, setPassword] = useState("name@address.com");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = () =>{
+  const history = useHistory();
 
+  const handleSubmit = async(e) =>{
+    e.preventDefault();
+    setLoading(true);
+    const auth = fireBaseAuth;
+    try{
+      await signInWithEmailAndPassword(auth, email, password)
+      .then( async (result) => {
+        const {user} = result;
+        const idTokenResult = await getIdTokenResult(user);
+        dispatch({
+          type:'LOGGED_IN_USER',
+          payload:{email: user.email, token:idTokenResult.token}
+      });
+      })
+
+    } catch (err){
+      swal({
+        title:"Incorrect details, please review your login Credentials",
+        icon: "error"
+      })
+    }
 
   }
 
@@ -82,8 +99,10 @@ const Login = () => {
                 <Form.Control
                   name="loginPassword"
                   id="loginPassword"
-                  type="email"
+                  type="password"
                   placeholder="Password"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                   required
                 />
               </div>
@@ -152,4 +171,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

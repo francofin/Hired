@@ -1,12 +1,31 @@
-import React from "react";
-import { ActiveLink, Avatar} from '../../components';
+import {fireBaseAuth} from '../../utils/firebase';
 import userMenu from "../../data/user-menu.json";
+import React, {useState, useContext} from "react";
+import { getAuth, signOut  } from "firebase/auth";
+import { ActiveLink, Avatar} from '../../components';
+import { AuthContext } from "../../utils/authContext";
 import { Dropdown, NavLink, NavItem } from "react-bootstrap";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { BrowserRouter as Router, Link, useHistory} from 'react-router-dom';
 
 function UserMenu({ onLinkClick }) {
+
+  const logout = async () => {
+    const auth = fireBaseAuth;
+    await signOut(auth);
+
+    dispatch({
+      type:'LOGGED_IN_USER', 
+      payload: null
+    })
+
+    history.push('/login')
+
+  }
+  const {state, dispatch} = useContext(AuthContext);
+  let history = useHistory();
+  const {user} = state;
   return (
     <Dropdown
       as={NavItem}
@@ -32,24 +51,23 @@ function UserMenu({ onLinkClick }) {
       <Dropdown.Menu align="end">
         {userMenu.dropdown &&
           userMenu.dropdown.map((dropdownItem, index) =>
-            !dropdownItem.divider ? (
-              <ActiveLink
-                key={index}
-                activeClassName="active"
-                href={dropdownItem.link}
-              >
-                <Dropdown.Item onClick={() => onLinkClick(userMenu.title)}>
-                  {dropdownItem.signout && (
-                    <FontAwesomeIcon
-                      icon={faSignOutAlt}
-                      className="me-2 text-muted"
-                    />
-                  )}
+            !dropdownItem.divider && !dropdownItem.signout ? (
+                <Dropdown.Item onClick={() => onLinkClick(userMenu.title)} href={dropdownItem.link} key={index}>
                   {dropdownItem.title}
                 </Dropdown.Item>
-              </ActiveLink>
             ) : (
-              <Dropdown.Divider key={index} />
+              <>
+              {dropdownItem.signout &&
+              <Dropdown.Item onClick = {logout} key={index}>
+                <FontAwesomeIcon
+                icon={faSignOutAlt}
+                className="me-2 text-muted"
+              />
+                {dropdownItem.title}
+            </Dropdown.Item>}
+              <Dropdown.Divider />
+              
+            </> 
             )
           )}
       </Dropdown.Menu>
