@@ -5,26 +5,40 @@ import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';   
 import React, {useState, useContext} from "react";
 import { AuthContext } from '../utils/authContext';
+import {gql, useQuery, useLazyQuery} from "@apollo/client";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import {Image, Swiper, SearchBar, LastMinute, Guides, Instagram, CardPost, SwiperTestimonial, Icon} from "../components";
 
+const getAllPosts = gql`
+            {
+                allPosts {
+                    id
+                    title
+                    description
+                }
+            }
+        `;
 
 const Index = () => {
 
-  
-const properties = {
-  nav: {
-    light: true,
-    classes: "shadow",
-    color: "white",
-  },
-  title: "Homepage",
-}
 
-const {state, dispatch} = useContext(AuthContext);
+  const properties = {
+    nav: {
+      light: true,
+      classes: "shadow",
+      color: "white",
+    },
+    title: "Homepage",
+  }
 
+  const {state, dispatch} = useContext(AuthContext);
+
+  console.log(useQuery(getAllPosts));
+
+
+  // console.log(postData)
 
   return (
       <div style={{paddingTop:'72px'}}>

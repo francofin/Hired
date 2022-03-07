@@ -3,11 +3,11 @@ import {Image, Icon} from "../components";
 import { AuthContext } from '../utils/authContext';
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import {fireBaseAuth, googleAuthProvider} from '../utils/firebase';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { signInWithEmailAndPassword, getIdTokenResult } from "firebase/auth";
+import {fireBaseAuth, googleAuthProvider, facebookAuthProvider} from '../utils/firebase';
+import { signInWithEmailAndPassword, signInWithPopup, getIdTokenResult, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
 const properties  = {
   title: "Sign in",
@@ -20,16 +20,17 @@ const Login = () => {
 
   const {dispatch} = useContext(AuthContext);
   const [email, setEmail] = useState("name@address.com");
-  const [password, setPassword] = useState("name@address.com");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const history = useHistory();
+  const auth = fireBaseAuth;
 
   const handleSubmit = async(e) =>{
     e.preventDefault();
     setLoading(true);
-    const auth = fireBaseAuth;
+    
     try{
       await signInWithEmailAndPassword(auth, email, password)
       .then( async (result) => {
@@ -39,7 +40,9 @@ const Login = () => {
           type:'LOGGED_IN_USER',
           payload:{email: user.email, token:idTokenResult.token}
       });
-      })
+
+        history.push('/');
+      });
 
     } catch (err){
       swal({
@@ -47,7 +50,63 @@ const Login = () => {
         icon: "error"
       })
     }
+  }
 
+
+  const logInWithGoogle = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try{
+      await signInWithPopup(auth, googleAuthProvider)
+      .then( async (result) => {
+        console.log("Google Auth", result);
+        const {user} = result;
+        const idTokenResult = await getIdTokenResult(user);
+        dispatch({
+          type:'LOGGED_IN_USER',
+          payload:{email: user.email, token:idTokenResult.token}
+      });
+
+      history.push('/');
+      })
+
+    }
+    catch(err){
+      swal({
+        title:`Please review your Google login Credentials. ${err}`,
+        icon: "error"
+      })
+    }
+    
+  }
+
+  const logInWithFaceBook = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try{
+      await signInWithPopup(auth, facebookAuthProvider)
+      .then( async (result) => {
+        console.log("Google Auth", result);
+        const {user} = result;
+        const idTokenResult = await getIdTokenResult(user);
+        dispatch({
+          type:'LOGGED_IN_USER',
+          payload:{email: user.email, token:idTokenResult.token}
+      });
+
+      history.push('/');
+      })
+
+    }
+    catch(err){
+      swal({
+        title:`Please review your Google login Credentials. ${err}`,
+        icon: "error"
+      })
+    }
+    
   }
 
 
@@ -118,12 +177,12 @@ const Login = () => {
                 />
               </div> */}
               <div className="d-grid">
-                <Button size="lg">Sign in</Button>
+                <Button size="lg"  type="submit">Sign in</Button>
               </div>
             </Form>
             <hr data-content="OR" className="my-3 hr-text letter-spacing-2" />
             <div className="d-grid gap-2">
-              <Button variant="outline-primary" className="btn-social">
+              <Button variant="outline-primary" className="btn-social" type="submit" onClick={logInWithFaceBook}>
                 <FontAwesomeIcon
                   icon={faFacebookF}
                   size="2x"
@@ -132,7 +191,7 @@ const Login = () => {
                 Connect{" "}
                 <span className="d-none d-sm-inline">with Facebook</span>
               </Button>
-              <Button variant="outline-muted" className="btn-social">
+              <Button variant="outline-muted" className="btn-social" type="submit" onClick={logInWithGoogle}>
                 <FontAwesomeIcon
                   icon={faGoogle}
                   size="2x"

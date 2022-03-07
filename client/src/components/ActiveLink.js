@@ -1,4 +1,5 @@
 import React, { Children } from "react";
+import { Dropdown } from "react-bootstrap";
 import { BrowserRouter as Router, Link} from 'react-router-dom';
 
 
@@ -15,14 +16,14 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
       : childClassName
 
 
-  console.log("Window Props", props);
+  console.log("Window Props", children);
 
   return (
-    <Link to={props.to}>
+    <div>
       {React.cloneElement(child, {
         className: className || null,
       })}
-    </Link>
+    </div>
   )
 }
 

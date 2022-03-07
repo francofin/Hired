@@ -1,4 +1,7 @@
 const {gql} = require('apollo-server-express');
+const { authMiddleware } = require('../../utils/auth');
+
+
 const posts = [
     {
         id: 1,
@@ -28,7 +31,10 @@ const posts = [
 
 const totalPosts = () => posts.length;
 
-const allPosts = () => posts;
+const allPosts = () => {
+    // await authMiddleware(context);
+    return posts;
+};
 
 const newPost = (parent, args) => {
     console.log(args)
@@ -42,8 +48,6 @@ const newPost = (parent, args) => {
 
     return post;
 }
-
-
 
 
 const resolvers = {

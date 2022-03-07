@@ -122,7 +122,7 @@ const Header = (props) => {
                         onLinkClick={onLinkClick}
                         item={item}
                         key={item.title}
-                        parentName={parentName}
+               
                       />
                     ) : (
                       ""
@@ -140,14 +140,14 @@ const Header = (props) => {
                     >
                       {item.button ? (
                         item.showToLoggedUser !== false && (
-                          <Link className="active" to={item.link}>
+                          <Link to={item.link}>
                             <Button onClick={() => onLinkClick(item.title)}>
                               {item.title}
                             </Button>
                           </Link>
                         )
                       ) : (
-                          <Nav.Link onClick={() => onLinkClick(item.title)} href={item.link} className="active">
+                          <Nav.Link onClick={() => onLinkClick(item.title)} href={item.link}>
                             {item.title}
                           </Nav.Link>
                       )}

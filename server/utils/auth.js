@@ -1,38 +1,29 @@
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
+var admin = require("firebase-admin");
+
+var serviceAccount = require("../config/firebaseServiceKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 
 const secret = process.env.SECRET;
 const expiration = '2h';
 
 module.exports = {
-  authMiddleware: function({ req }) {
-    // allows token to be sent via req.body, req.query, or headers
-    let token = req.body.token || req.query.token || req.headers.authorization;
-  
-    // separate "Bearer" from "<tokenvalue>"
-    if (req.headers.authorization) {
-      token = token
-        .split(' ')
-        .pop()
-        .trim();
-    }
-  
-    // if no token, return request object as is
-    if (!token) {
-      return req;
-    }
-  
+  authMiddleware: async ({ req }) => {
+
     try {
-      // decode and attach user data to request object
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log('Invalid token');
+
+      const currentUser = await admin.auth().verifyIdToken(req.headers.authorization);
+      console.log(currentUser);
+      return currentUser;
+
+    } catch (err){
+      console.log("AUTH CHECK ERROR", err);
+      throw new Error('Invalid or Expired Token');
     }
-  
-    // return updated request object
-    return req;
   },
   // signToken: function({ firstName, lastName, email, _id }) {
   //   const payload = { firstName, lastName, email, _id };

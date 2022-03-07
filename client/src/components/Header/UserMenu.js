@@ -2,7 +2,7 @@ import {fireBaseAuth} from '../../utils/firebase';
 import userMenu from "../../data/user-menu.json";
 import React, {useState, useContext} from "react";
 import { getAuth, signOut  } from "firebase/auth";
-import { ActiveLink, Avatar} from '../../components';
+import { Avatar} from '../../components';
 import { AuthContext } from "../../utils/authContext";
 import { Dropdown, NavLink, NavItem } from "react-bootstrap";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
@@ -56,9 +56,9 @@ function UserMenu({ onLinkClick }) {
                   {dropdownItem.title}
                 </Dropdown.Item>
             ) : (
-              <>
+              <React.Fragment key={index}>
               {dropdownItem.signout &&
-              <Dropdown.Item onClick = {logout} key={index}>
+              <Dropdown.Item onClick={logout}>
                 <FontAwesomeIcon
                 icon={faSignOutAlt}
                 className="me-2 text-muted"
@@ -66,8 +66,7 @@ function UserMenu({ onLinkClick }) {
                 {dropdownItem.title}
             </Dropdown.Item>}
               <Dropdown.Divider />
-              
-            </> 
+            </React.Fragment> 
             )
           )}
       </Dropdown.Menu>

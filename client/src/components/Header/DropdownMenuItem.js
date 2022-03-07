@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Icon, Image, ActiveLink} from '../../components';
+import { Link} from 'react-router-dom';
 import { NavItem, NavLink, Dropdown, Row, Col, Badge } from "react-bootstrap";
 
 export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
@@ -37,10 +38,10 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
                 {dropdownItem.links.map((link) => (
                   <ActiveLink
                     key={link.title}
-                    activeClassName="active"
+                    className="active"
                     to={link.link}
                   >
-                    <Dropdown.Item onClick={() => onLinkClick(item.title)}>
+                    <Link onClick={() => onLinkClick(item.title)}>
                       {link.title}
                       {link.new && (
                         <Badge
@@ -51,7 +52,7 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
                           New
                         </Badge>
                       )}
-                    </Dropdown.Item>
+                    </Link>
                   </ActiveLink>
                 ))}
               </React.Fragment>
@@ -80,9 +81,7 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
                           {block.links.map((link) => (
                             <li key={link.title} className="megamenu-list-item">
                               <ActiveLink
-                                activeClassName="active"
-                                to={link.link}
-                                as={link.as}
+                                className="active"
                               >
                                 <Dropdown.Item
                                   className="megamenu-list-link"
