@@ -1,5 +1,6 @@
 import swal from 'sweetalert';
 import {Image, Icon} from "../components";
+import {gql, useMutation } from "@apollo/client";
 import { AuthContext } from '../utils/authContext';
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from 'react-router-dom';
@@ -9,14 +10,25 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import {fireBaseAuth, googleAuthProvider, facebookAuthProvider} from '../utils/firebase';
 import { signInWithEmailAndPassword, signInWithPopup, getIdTokenResult, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
-const properties  = {
-  title: "Sign in",
-  hideHeader: true,
-  hideFooter: true,
-  noPaddingTop: true,
-}
+
+
+const CREATE_USER = gql`
+    mutation createUser {
+      createUser{
+        userName
+        email
+      }
+    }
+`
 
 const Login = () => {
+
+  const properties  = {
+    title: "Sign in",
+    hideHeader: true,
+    hideFooter: true,
+    noPaddingTop: true,
+  };
 
   const {dispatch} = useContext(AuthContext);
   const [email, setEmail] = useState("name@address.com");
@@ -26,6 +38,8 @@ const Login = () => {
 
   const history = useHistory();
   const auth = fireBaseAuth;
+
+  const[createUser] = useMutation(CREATE_USER);
 
   const handleSubmit = async(e) =>{
     e.preventDefault();
@@ -41,6 +55,8 @@ const Login = () => {
           payload:{email: user.email, token:idTokenResult.token}
       });
 
+
+        createUser();
         history.push('/');
       });
 
@@ -68,6 +84,8 @@ const Login = () => {
           payload:{email: user.email, token:idTokenResult.token}
       });
 
+      
+      createUser();
       history.push('/');
       })
 
@@ -150,7 +168,7 @@ const Login = () => {
                     <Form.Label htmlFor="loginPassword">Password</Form.Label>
                   </Col>
                   <Col xs="auto">
-                    <Link to="#" className="form-text small text-primary">
+                    <Link to="/password-reset" className="form-text small text-primary">
                       Forgot password?
                     </Link>
                   </Col>

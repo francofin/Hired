@@ -4,14 +4,14 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./scss/style.default.scss";
 import React, {useContext} from "react";
-import {SvgIcons, Footer} from './components';
 import { AuthContext } from './utils/authContext';
 import SSRProvider from "react-bootstrap/SSRProvider";
 import { setContext } from "@apollo/client/link/context";
+import {SvgIcons, Footer, PrivateRoute} from './components';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
-import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp} from "./pages";
 import {ApolloClient, InMemoryCache, ApolloProvider,useQuery,gql, concat, ApolloLink, HttpLink } from "@apollo/client";
+import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, CreateJob, ForgotPassword} from "./pages";
 
 
 
@@ -28,7 +28,7 @@ function App() {
     operation.setContext(({ headers = {} }) => ({
       headers: {
         ...headers,
-        authorization: user ? user.token : "",
+        authtoken: user ? user.token : "",
       }
     }));
   
@@ -46,11 +46,16 @@ function App() {
     <ApolloProvider client={client}>
           <>
             <Route exact path ="/" component = {Home} />
-            <Route exact path ="/profile" component = {UserProfile} />
             <Route exact path ="/intern" component = {Internships} />
             <Route exact path ="/login" component = {Login} />
             <Route exact path ="/signup" component = {SignUp} />
+            <Route exact path ="/password-reset" component = {ForgotPassword} />
             <Route exact path ="/completeregistration" component = {CompleteSignUp} />
+            <PrivateRoute exact path ="/profile" component = {UserProfile} />
+            <PrivateRoute exact path ="/account-detail" component={UserAccount} />
+            <PrivateRoute exact path ="/personal-info" component={PersonalInfo} />
+            <PrivateRoute exact path ="/user-security" component={UpdateSecurity} />
+            <PrivateRoute exact path ="/add-job-posting" component={CreateJob} />
           </>
         <Footer />
         <SvgIcons />

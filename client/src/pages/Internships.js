@@ -1,13 +1,21 @@
-import React from "react";
 import data from "../data/index3.json";
 import { Link } from 'react-router-dom';
+import React, {useState, useContext} from "react";
+import { AuthContext } from '../utils/authContext';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {Image, Instagram, Guides, LastMinute, SearchBar, RichSwiper, Header} from "../components";
 
 
-const properties = {
+
+
+    
+const Internships = () => {
+
+  const {state, dispatch} = useContext(AuthContext);
+
+  const properties = {
     nav: {
         dark: true,
         fixed: "false",
@@ -18,11 +26,10 @@ const properties = {
       title: "Travel",
     }
 
-    
-const Internships = () => {
+
   return (
     <React.Fragment>
-    <Header headerData={properties}/>
+    <Header headerData={properties} userState={state}/>
       <RichSwiper
         className="multi-slider"
         data={data.swiper}
@@ -117,7 +124,6 @@ const Internships = () => {
                       alt={place.title}
                       layout="fill"
                       className="bg-image"
-                      alt="Hero image"
                     />
                     <div className="p-3 p-sm-5 text-white z-index-20">
                       <h4 className="h2">{place.title}</h4>

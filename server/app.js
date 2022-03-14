@@ -3,9 +3,11 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const { authCheck} = require('./utils/authorize') ;
+const { authCheck } = require('./utils/auth') ;
 
 const app = express();
+
+
 
 // app.use(helmet.contentSecurityPolicy());
 // app.use(helmet.crossOriginEmbedderPolicy());
@@ -24,24 +26,23 @@ app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 
 
-// app.use(cors({
-//     origin:'http://localhost:3000',
-// }));
+
 
 app.use(cors('*'));
 
-
 app.use(morgan('combined'));
 app.use(express.json());
-app.use(authCheck);
 
-// app.get('/rest', function(req, res){
-//     res.json({
-//         data:"You Hit the endpoint successfully"
-//     })
-// });
+// app.use(authCheck);
+
 
 // app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.get('/rest', function(req, res) {
+    res.json({
+        data: 'you hit rest endpoint great!'
+    });
+});
 
 // app.get('/*', (req, res)=>{
 //     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))

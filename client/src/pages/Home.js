@@ -35,7 +35,7 @@ const Index = () => {
 
   const {state, dispatch} = useContext(AuthContext);
 
-  console.log(useQuery(getAllPosts));
+  console.log("Posts", useQuery(getAllPosts));
 
 
   // console.log(postData)

@@ -1,12 +1,11 @@
 const fs = require('fs');
 const app = require('./app');
-const https = require('https');
+// const https = require('https');
 const http = require('http');
 const db = require('./config/connection');
 const {resolvers, typeDefs} = require('./schemas');
 const {ApolloServer} = require('apollo-server-express');
-const { authCheck} = require('./utils/authorize');
-const {authMiddleware} = require('./utils/auth');
+const { ApolloServerPluginLandingPageGraphQLPlayground,ApolloServerPluginLandingPageDisabled } = require('apollo-server-core');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 8001;
@@ -14,7 +13,7 @@ const PORT = process.env.PORT || 8001;
 const configurations = {
     // Note: You may need sudo to run on port 443
     production: { ssl: true, port: 443, hostname: 'hired.com' },
-    development: { ssl: false, port: 8000, hostname: 'localhost' },
+    development: { ssl: false, port: 4000, hostname: 'localhost' },
   };
 
 const environment = 'development';
@@ -33,6 +32,11 @@ async function startServer() {
         typeDefs,
         resolvers,
         context:({req, res}) => ({req, res}),
+        plugins: [
+            process.env.NODE_ENV === 'production'
+              ? ApolloServerPluginLandingPageDisabled()
+              : ApolloServerPluginLandingPageGraphQLPlayground(),
+          ],
     });
 
     await apolloServer.start();

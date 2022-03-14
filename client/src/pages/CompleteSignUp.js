@@ -2,6 +2,7 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import {fireBaseAuth} from '../utils/firebase';
+import {gql, useMutation } from "@apollo/client";
 import {Image, Icon, Spinner} from "../components";
 import { AuthContext } from '../utils/authContext';
 import React, {useEffect, useState, useContext} from "react";
@@ -10,21 +11,32 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { signInWithEmailLink, updatePassword, getIdTokenResult } from "firebase/auth";
 
-const properties  = {
-  title: "Complete Registration",
-  hideHeader: true,
-  hideFooter: true,
-  noPaddingTop: true,
-}
+
+
+const CREATE_USER = gql`
+    mutation createUser {
+      createUser{
+        userName
+        email
+      }
+    }
+`
 
 const CompleteSignUp = () => {
+
+    const properties  = {
+        title: "Complete Registration",
+        hideHeader: true,
+        hideFooter: true,
+        noPaddingTop: true,
+      }
 
     const {dispatch} = useContext(AuthContext)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
-
+    const[createUser] = useMutation(CREATE_USER);
 
     let history = useHistory();
 
@@ -33,6 +45,7 @@ const CompleteSignUp = () => {
         const userEmail = window.localStorage.getItem("hiredSignInEmail");
         setEmail(userEmail);
     }, [history])
+
 
     const handleSubmit = async(e) => {
     e.preventDefault();
@@ -68,6 +81,8 @@ const CompleteSignUp = () => {
                     type:'LOGGED_IN_USER',
                     payload:{email: user.email, token:idTokenResult.token}
                 });
+
+                createUser();
 
                 //save or update user in mongodb
 

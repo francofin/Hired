@@ -31,8 +31,8 @@ const posts = [
 
 const totalPosts = () => posts.length;
 
-const allPosts = () => {
-    // await authMiddleware(context);
+const allPosts = async (parent, args, {req}) => {
+    await authMiddleware({req});
     return posts;
 };
 
@@ -50,7 +50,7 @@ const newPost = (parent, args) => {
 }
 
 
-const resolvers = {
+module.exports = {
     Query:{
         totalPosts,
         allPosts,
@@ -59,4 +59,3 @@ const resolvers = {
         newPost,
     }
 }
-module.exports =resolvers;

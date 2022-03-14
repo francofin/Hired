@@ -4,7 +4,7 @@
     "cards": [
         {
             "title": "Personal info",
-            "link": "/user-personal",
+            "link": "/personal-info",
             "icon": "identity-1",
             "content": "Provide personal details and how we can reach you"
         },
@@ -21,16 +21,16 @@
             "content": "Review payments, payouts, coupons, gift cards, and taxes"
         },
         {
-            "title": "Notifications",
-            "link": "#",
-            "icon": "chat-app-1",
+            "title": "Create Job Posting",
+            "link": "/add-job-posting",
+            "icon": "store-1",
             "content": "Choose notification preferences and how you want to be contacted"
         },
         {
-            "title": "Privacy & sharing",
+            "title": "Create/Update Your Details",
             "link": "#",
             "icon": "diary-1",
-            "content": "Control connected apps, what you share, and who sees it"
+            "content": "Update your about you information and additional details you want to share"
         },
         {
             "title": "Global preferences",

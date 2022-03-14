@@ -3,40 +3,48 @@ import React, {useState} from "react";
 import { Link } from 'react-router-dom';
 import {fireBaseAuth} from '../utils/firebase';
 import {Image, Icon, Spinner} from "../components";
-import { sendSignInLinkToEmail } from "firebase/auth";
+import { sendPasswordResetEmail  } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 
-const properties  = {
-  title: "Sign up",
-  hideHeader: true,
-  hideFooter: true,
-  noPaddingTop: true,
-}
 
-const Signup = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const properties  = {
+    title: "Sign up",
+    hideHeader: true,
+    hideFooter: true,
+    noPaddingTop: true,
+  }
 
  const handleSubmit = async(e) =>{
    e.preventDefault();
    setLoading(true);
    const auth = fireBaseAuth;
    const config = {
-     url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+     url: process.env.REACT_APP_FORGOT_PASSWORD_REDIRECT,
      handleCodeInApp: true
    }
-  await sendSignInLinkToEmail(auth, email, config);
-  window.localStorage.setItem('hiredSignInEmail', email);
-  swal({
-    title: `Success, Email sent to ${email}, Please check your email to complete your registration!`,
-    icon: "success",
-  });
-  setEmail("");
-  setLoading(false);
-  console.log("clicked")
+  await sendPasswordResetEmail(auth, email, config)
+  .then(() => {
+      setEmail("");
+      setLoading(false);
+      swal({
+        title: `Success, Email sent to ${email}, Please check your email to reset you password!`,
+        icon: "success",
+      })
+    }).catch(error => {
+        setLoading(false);
+        swal({
+            title: `Error Sending Email, Please check the email you supplied is accurate!`,
+            icon: "error",
+          })
+        
+    })
     
   }
 
@@ -55,10 +63,9 @@ const Signup = () => {
                 style={{ maxWidth: "4rem" }}
                 className="img-fluid mb-3"
               />
-              <h2>Sign up</h2>
+              <h2>Reset Your Password</h2>
               <p className="text-muted">
-                Please enter a valid, email, we'll send a confirmation to get you all set up and on your career journey.
-                Congrations on taking your first step and we're proud to help you along the way.
+                Please enter the email used to create your account, We'll send you your reset link right away to get back to business.
               </p>
             </div>
             <Form className="form-validate" onSubmit={handleSubmit}>
@@ -76,29 +83,9 @@ const Signup = () => {
                 />
               </div>
               <div className="d-grid">
-                <Button size="lg" type="submit" disabled={!email || loading}>Sign up</Button>
+                <Button size="lg" type="submit" disabled={!email || loading}>Send Reset Link</Button>
               </div>
             </Form>
-            <hr data-content="OR" className="my-3 hr-text letter-spacing-2" />
-            <div className="d-grid gap-2">
-              <Button variant="outline-primary" className="btn-social">
-                <FontAwesomeIcon
-                  icon={faFacebookF}
-                  size="2x"
-                  className="btn-social-icon"
-                />
-                Connect{" "}
-                <span className="d-none d-sm-inline">with Facebook</span>
-              </Button>
-              <Button variant="outline-muted" className="btn-social">
-                <FontAwesomeIcon
-                  icon={faGoogle}
-                  size="2x"
-                  className="btn-social-icon"
-                />
-                Connect <span className="d-none d-sm-inline">with Google</span>
-              </Button>
-            </div>
             <hr className="my-4" />
             <p className="text-sm text-muted">
               By signing up you agree to Directory's{" "}
@@ -127,4 +114,4 @@ const Signup = () => {
   )
 }
 
-export default Signup;
+export default ForgotPassword;

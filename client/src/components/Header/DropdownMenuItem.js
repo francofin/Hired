@@ -20,6 +20,7 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
         as={NavLink}
         className={parentName === item.title ? "active" : ""}
         id={`dropdown-${item.title}-toggle`}
+        href={item.link}
       >
         {item.title}
       </Dropdown.Toggle>
@@ -39,9 +40,9 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
                   <ActiveLink
                     key={link.title}
                     className="active"
-                    to={link.link}
+                    
                   >
-                    <Link onClick={() => onLinkClick(item.title)}>
+                    <Link onClick={() => onLinkClick(item.title)} to={link.link}>
                       {link.title}
                       {link.new && (
                         <Badge
@@ -58,7 +59,7 @@ export default function DropdownMenuItem({ onLinkClick, item, parentName }) {
               </React.Fragment>
             ) : (
              
-                <Dropdown.Item onClick={() => onLinkClick(item.title)}  key={dropdownItem.title} className="active" href={dropdownItem.link}>
+                <Dropdown.Item onClick={() => onLinkClick(item.title)}  key={dropdownItem.title} href={dropdownItem.link}>
                   {dropdownItem.title}
                   {dropdownItem.new && (
                     <Badge text="info" bg="info-light" className="ms-1 mt-n1">

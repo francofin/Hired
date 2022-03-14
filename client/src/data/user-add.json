@@ -1,9 +1,9 @@
 [
   {
     "title": "Let's get started",
-    "subtitle": "Add a new listing",
-    "content": "<p class='text-muted'>His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.</p><p class='text-muted mb-5'>Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>",
-    "button": "Add your listing"
+    "subtitle": "Add a new Job Posting",
+    "content": "<p class='text-muted'>We are here to serve you through your job search. Please do not hesitate, to reach us if you have any concerns.</p><p class='text-muted mb-5'>Thank You for choosing H!red and best of luck in finding the best candidate.</p>",
+    "button": "Post a Job"
   },
   {
     "title": "Basic information",

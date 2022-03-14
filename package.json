@@ -10,7 +10,7 @@
     "test:dev": "concurrently \"cd server && npm run test\" \"cd client && npm run test\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
-    "dev":"concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "deploy": "concurrently \"cd client && npm run build\" \"cd server && npm start\"",
     "deploy-cluster": "concurrently \"cd client && npm run build\" \"cd server && npm run cluster\""
   },
@@ -29,6 +29,7 @@
     "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
     "helmet": "^5.0.2",
-    "ifenv": "^0.1.1"
+    "ifenv": "^0.1.1",
+    "shortid": "^2.2.16"
   }
 }

@@ -1,6 +1,7 @@
 [
   {
     "title": "Home",
+    "link":"/",
     "dropdown": [
       {
         "title": "Search Jobs",
@@ -312,8 +313,8 @@
     "hideToLoggedUser": true
   },
   {
-    "title": "Add a listing",
-    "link": "/user-add-0",
+    "title": "Post a Job",
+    "link": "/login",
     "button": true,
     "hideToLoggedUser": true
   }

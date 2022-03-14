@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from 'react-router-dom';
 import data from "../data/user-profile.json";
 import dataSwiper from "../data/index3.json";
+import '../components/CustomProfileImage.css';
 import geoJSON from "../data/rooms-geojson.json";
+import { AuthContext } from '../utils/authContext';
 import { Container, Row, Col, Card, Badge } from "react-bootstrap";
 import {Image, Icon, ReviewForm, Reviews, CardRoom, Header, RichSwiper} from "../components";
 
@@ -17,10 +19,14 @@ const properties = {
 }
 
 const UserProfile = () => {
+
+  const {state, dispatch} = useContext(AuthContext);
+
+
   return (
     <React.Fragment>
       <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties}/>
+    <Header headerData={properties} userState={state}/>
     <main>
     <section className="py-5">
       <Container>
@@ -31,13 +37,15 @@ const UserProfile = () => {
                 <Link to="#" className="d-inline-block">
                   <div className="avatar avatar-xxl p-2 mb-2">
                     <div className="position-relative h-100 overflow-hidden rounded-circle">
+                    <span className="custom-profile-image">
                       <Image
                         src={`/content/img/avatar/${data.avatar}`}
                         alt=""
                         width={144}
                         height={144}
-                        layout="fixed"
+                        className = "custom-user-image"
                       />
+                      </span>
                     </div>
                   </div>
                 </Link>

@@ -1,6 +1,11 @@
 export {default as SignUp } from './SignUp';
 export {default as Login } from './Login';
 export {default as Home } from './Home';
+export {default as CreateJob } from './CreateJob';
+export {default as PersonalInfo } from './PersonalInfo';
 export {default as UserProfile } from './UserProfile';
 export {default as Internships } from './Internships';
 export {default as CompleteSignUp } from './CompleteSignUp';
+export {default as UserAccount } from './UserAccount';
+export {default as UpdateSecurity } from './UpdateSecurity';
+export {default as ForgotPassword } from './ForgotPassword';
