@@ -45,7 +45,7 @@ module.exports= gql`
         createdAt: Datetime
         updatedAt: Datetime
         isPremium: Boolean
-        role:String
+        role:[String]
         isCompany:Boolean
         entity:String
         country:String
@@ -109,6 +109,7 @@ module.exports= gql`
         streetAddress:String
         postalCode:String
         skills:[SkillInput]
+        role:[String]
     }
 
     type Query {

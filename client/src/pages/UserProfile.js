@@ -16,7 +16,9 @@ const UserProfile = () => {
 
 
   const {state, dispatch} = useContext(AuthContext);
-  
+  const {data:userProfileData} = useQuery(PROFILE);
+
+  // console.log("User Profile from Query", userProfileData)
 
   const properties = {
     nav: {

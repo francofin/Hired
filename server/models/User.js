@@ -97,7 +97,7 @@ const userSchema = new Schema({
         type:String
     },
     role:{
-        type:['String'],
+        type:[String],
         default: ['Job Seeker'],
         enum:['Job Seeker', 'Employer', 'Admin', 'Student',]
     },

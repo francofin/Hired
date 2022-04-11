@@ -5,9 +5,10 @@ import data from "../data/user-security.json";
 import {fireBaseAuth} from '../utils/firebase';
 import React, {useState, useContext} from "react";
 import { AuthContext } from '../utils/authContext';
+import {useQuery, useMutation} from '@apollo/client';
 import { updatePassword, signInWithEmailAndPassword, getIdTokenResult  } from "firebase/auth";
 import {Container,Row,Col, Button,Collapse,Badge,Form,Card,Breadcrumb} from "react-bootstrap";
-
+import {PROFILE} from '../utils/queries';
 
 
 
@@ -21,6 +22,7 @@ const UpdateSecurity = () => {
 
 
   const {state, dispatch} = useContext(AuthContext);
+  const {data} = useQuery(PROFILE);
 
   const confirmPasswordUpdate = async (e) => {
     e.preventDefault();

@@ -2,14 +2,15 @@ import { Link } from 'react-router-dom';
 import {Icon,Header} from "../components";
 import data from "../data/user-account.json";
 import { AuthContext } from '../utils/authContext';
+import {useQuery, useMutation} from '@apollo/client';
 import React, {useEffect, useState, useContext} from "react";
 import { Container, Row, Col, Card, Breadcrumb } from "react-bootstrap";
-
+import {PROFILE} from '../utils/queries';
 
 const UserAccount = () => {
 
     const {state, dispatch} = useContext(AuthContext);
-
+    const {data} = useQuery(PROFILE);
     const properties = {
         nav: {
             light: true,

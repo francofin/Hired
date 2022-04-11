@@ -1,6 +1,7 @@
 import Select from "react-select";
 import { Link } from 'react-router-dom';
 import { useDropzone } from "react-dropzone";
+import Resizer from 'react-image-file-resizer';
 import { ProfileContext } from './profileContext';
 import { AuthContext } from '../utils/authContext';
 import { Row, Col, Form, Button } from "react-bootstrap";
@@ -19,6 +20,33 @@ const ProfileForm = (props) => {
   const [userProfile, setUserProfile] = useContext(ProfileContext);
 
   
+  const fileResizerAndUpload = (e) => {
+    let fileInput = false;
+    if (e.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          e.target.files[0],
+          300,
+          300,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            console.log(uri);
+            setUserProfile({...userProfile, images:[uri]})
+          },
+          "base64",
+          200,
+          200
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
 
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -26,7 +54,7 @@ const ProfileForm = (props) => {
     onDrop: (acceptedFiles) => {
       setUserProfile({
         ...userProfile,
-        ["files"]: acceptedFiles.map((file) =>
+        ["images"]: acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
@@ -292,8 +320,8 @@ useEffect(() => {
                       </div>
                     </div>
                     <Row className="mt-4">
-                      {userProfile["files"] &&
-                        userProfile["files"].map((file) => (
+                      {userProfile["images"] &&
+                        userProfile["images"].map((file) => (
                           <div key={file.name} className="col-lg-4">
                             <div>
                               <img

@@ -24,6 +24,17 @@ module.exports= {
         throw new Error('Invalid or Expired Token');
       }
     },
+    authCheckImageMiddleware: (req, res, next) => {
+      if(req.headers.authtoken){
+        admin.auth().verifyIdToken(req.headers.authtoken)
+        .then((result) => {
+          next()
+        })
+        .catch(error => console.log(error))
+    } else{
+      res.json({error:'Unaouthorized Access'})
+    }
+  },
     authCheck: (req, res) => {
       if (req.headers.authtoken) {
           admin
