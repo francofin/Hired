@@ -1,6 +1,6 @@
 const {gql} = require('apollo-server-express');
 const { authMiddleware } = require('../../utils/auth');
-
+const {DateTimeResolver} = require('graphql-scalars');
 
 const posts = [
     {

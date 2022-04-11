@@ -1,0 +1,382 @@
+[
+  {
+    "title": "Let's get started",
+    "subtitle": "Let's Show the world who you are!",
+    "content": "<p class='text-muted'>We are here to serve you through your job search. Please do not hesitate, to reach us if you have any concerns.</p><p class='text-muted mb-5'>Thank You for choosing H!red and best of luck in your future endeavours.</p>",
+    "button": "Start the Show"
+  },
+  {
+    "title": "Basic information",
+    "subtitle": "Tell us Who You Are!",
+    "formBlocks": [
+      {
+        "title": "Personal Information",
+        "content": "Tell us, who you are, why you have come to H!red and how best we can assist you in reaching your goals.",
+        "inputs": [
+          {
+            "label": "First Name",
+            "name": "firstName",
+            "type": "text",
+            "col":"6"
+          },
+          {
+            "label": "Last Name",
+            "name": "lastName",
+            "type": "text",
+            "col":"6"
+          },
+          {
+            "label": "Email",
+            "name": "email",
+            "type": "text",
+            "col":"6"
+          },
+          {
+            "label": "AgeInfo",
+            "type": "form-group",
+            "inputs": [
+              {
+                "label": "Birthdate",
+                "name": "birthday",
+                "type": "date",
+                "col": "6"
+              },
+              {
+                "label": "Age",
+                "name": "age",
+                "type": "text",
+                "col": "6"
+              }
+            ]
+          },
+          {
+            "label": "What best describes you? This is purely so we can understand how best we can tailor your experience on DigitalCV.",
+            "type": "radios",
+            "radios": [
+              {
+                "label": "Are you representing a Major Corporation?",
+                "name": "entity",
+                "id": "Corporation"
+              },
+              {
+                "label": "Are you representing a Small Business or Medium Sized Corporation?",
+                "name": "entity",
+                "id": "SBA"
+              },
+              {
+                "label": "Is your organization a Non Profit organization?",
+                "name": "entity",
+                "id": "Not For Profit"
+              },
+              {
+                "label": "Does your organization mostly offer volunteer opportunities?",
+                "name": "entity",
+                "id": "Volunteer Association"
+              },
+              {
+                "label": "Are you a startUp looking for great talent?",
+                "name": "entity",
+                "id": "StartUp"
+              },
+              {
+                "label": "Are you a job seeker, or looking for volunteer opportunities?",
+                "name": "entity",
+                "id": "employee"
+              }
+            ],
+            "text": "A corporation has 5 distinctive attributes: 1) a separate legal personality; 2) perpetual existence; 3) limited liability; 4) free transferability of an investor's interest; and 5) centralized management. The pre-eminence of the business corporation is in large measure due to the presence of these desirable characteristics.",
+            "definitions":[
+              {
+                "label":"Legal Definition 1 of a Corporation.",
+                "link":"https://www.thecanadianencyclopedia.ca/en/article/corporation-law#:~:text=A%20corporation%20is%20an%20artificial,governance%20and%20dissolution%20of%20corporations"
+              },
+              {
+                "label":"Legal Definition 2 of a Corporation.",
+                "link":"https://legal-dictionary.thefreedictionary.com/corporation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Location",
+        "content": "Where are you primarily looking for a job, This information is never shared with potential employers unless you have authorized us to do so upon initiation of a conversation, with that potential employer or potential employee",
+        "inputs": [
+          {
+            "label": "Country / Region",
+            "name": "country",
+            "type": "select",
+            "options": [
+              {
+                "label": "USA",
+                "value": "United States of America"
+              },
+              {
+                "label": "Canada",
+                "value": "Canada"
+              }
+            ]
+          },
+          {
+            "label": "Street Address",
+            "name": "streetAddress",
+            "type": "text"
+          },
+          {
+            "label": "Address",
+            "type": "form-group",
+            "inputs": [
+              {
+                "label": "City",
+                "name": "city",
+                "type": "text",
+                "col": "6"
+              },
+              {
+                "label": "State/Province",
+                "name": "stateLocation",
+                "type": "text",
+                "col": "6"
+              },
+              {
+                "label": "ZIP Code/Postal Code",
+                "name": "postalCode",
+                "type": "text",
+                "col": "6"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Personal Information.",
+    "subtitle": "Add What you would want employers and anyone visiting your profile to see.",
+    "formBlocks": [
+      {
+        "title": "Description",
+        "content": "This is the important stuff, let us know who you are, what you do, what ar you passionate about. Tell the world what drives you out of bed in the morning, all that inspires you and keeps you going. Show what you are made of. ",
+        "inputs": [
+          {
+            "label": "Describe your background, education and goals.",
+            "name": "form_description",
+            "type": "textarea",
+            "helpId": "descriptionHelp"
+          },
+          {
+            "label": "Describe your professional experience or any other relevant experience you'd like to share.",
+            "name": "form_availability",
+            "type": "textarea",
+            "helpId": "availabilityHelp"
+          },
+          {
+            "label": "Your neighbourhood",
+            "name": "form_neighbourhood",
+            "type": "textarea",
+            "helpId": "hoodHelp",
+            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Corporate Information.",
+    "subtitle": "Add What you would want potential employees or anyone interested in your organization to know and understand about you.",
+    "formBlocks": [
+      {
+        "title": "Description",
+        "content": "This is the important stuff, let potential employees know what your organization is about, a bit of the history and the organizational culture. All the great things that continue to make your organization a success and a valued memeber of our Global Community.",
+        "inputs": [
+          {
+            "label": "Describe your the organizational background, history and philosphy.",
+            "name": "form_description",
+            "type": "textarea",
+            "helpId": "descriptionHelp"
+          },
+          {
+            "label": "Describe what economic activities your organization is involved in. Tailor responses to be top down rather than role specific.",
+            "name": "form_availability",
+            "type": "textarea",
+            "helpId": "availabilityHelp"
+          },
+          {
+            "label": "Describe the organizational cutlure, what are some of the benefits of working in your organization.",
+            "name": "form_neighbourhood",
+            "type": "textarea",
+            "helpId": "hoodHelp",
+            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+          },
+          {
+            "label": "It is increasingly important that corporations lead by example in terms of sustainability, good governance and support for the environment. Let potential employees know your stance on anythese issues.",
+            "name": "form_neighbourhood",
+            "type": "textarea",
+            "helpId": "hoodHelp",
+            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+          },
+          {
+            "label": "Please describe any diversity metrics you can publicly share.",
+            "name": "form_neighbourhood",
+            "type": "textarea",
+            "helpId": "hoodHelp",
+            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+          },
+          {
+            "label": "Any Other organizational details you think to be",
+            "name": "form_neighbourhood",
+            "type": "textarea",
+            "helpId": "hoodHelp",
+            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Disposition and Amenities",
+    "subtitle": "Add a new listing",
+    "formBlocks": [
+      {
+        "title": "Rooms and beds",
+        "content": "The number and types of beds you have determines how many guests can stay comfortably",
+        "inputs": [
+          {
+            "type": "buttons",
+            "buttons": [
+                {
+                    "label": "Beds",
+                    "name": "form_beds"
+                },
+                {
+                    "label": "Bedrooms",
+                    "name": "form_bedrooms"
+                },
+                {
+                    "label": "Bathrooms",
+                    "name": "form_bathrooms"
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Amenities",
+        "content": "His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.",
+        "inputs": [
+          {
+            "type": "checkboxes",
+            "label": "Available Amenities",
+            "checkboxes": [
+                {
+                    "label": "Kitchen",
+                    "id": "amenities_0",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Shampoo",
+                    "id": "amenities_1",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Heating",
+                    "id": "amenities_2",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Air conditioning",
+                    "id": "amenities_3",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Washer",
+                    "id": "amenities_4",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Dryer",
+                    "id": "amenities_5",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Wifi",
+                    "id": "amenities_6",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Breakfast",
+                    "id": "amenities_7",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Indoor fireplace",
+                    "id": "amenities_8",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Buzzer/wireless intercom",
+                    "id": "amenities_9",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Doorman",
+                    "id": "amenities_10",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Hangers",
+                    "id": "amenities_11",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Iron",
+                    "id": "amenities_12",
+                    "name": "amenities[]"
+                },
+                {
+                    "label": "Hot dryer",
+                    "id": "amenities_13",
+                    "name": "amenities[]"
+                },{
+                    "label": "Laptop friendly workspace",
+                    "id": "amenities_14",
+                    "name": "amenities[]"
+                }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Photos",
+    "subtitle": "Add a new listing",
+    "content": "<p class='text-muted'>His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.</p><p class='text-muted mb-5'>Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>",
+    "formBlocks": [
+        {
+            "title": "Photos",
+            "content": "His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.",
+            "inputs": [
+                {
+                    "type": "upload"
+                }
+            ]
+        }
+    ]
+  },
+  {
+    "title": "Linsting uploaded",
+    "subtitle": "Add a new listing",
+    "content": "Thank you, Ondrej. Your listing has been saved and will be reviewed shortly.",
+    "buttons": [
+        {
+            "title": "Do something",
+            "link": "#"
+        },
+        {
+            "title": "Or something else",
+            "link": "#"
+        }
+    ]
+  }
+]

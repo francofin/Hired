@@ -10,17 +10,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { signInWithEmailLink, updatePassword, getIdTokenResult } from "firebase/auth";
+import { CREATE_USER } from '../utils/mutations';
 
 
-
-const CREATE_USER = gql`
-    mutation createUser {
-      createUser{
-        userName
-        email
-      }
-    }
-`
+// const CREATE_USER = gql`
+//     mutation createUser {
+//       createUser{
+//         userName
+//         email
+//       }
+//     }
+// `
 
 const CompleteSignUp = () => {
 

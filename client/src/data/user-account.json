@@ -28,7 +28,7 @@
         },
         {
             "title": "Create/Update Your Details",
-            "link": "#",
+            "link": "/update-profile-detail",
             "icon": "diary-1",
             "content": "Update your about you information and additional details you want to share"
         },

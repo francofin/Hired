@@ -7,11 +7,11 @@ import React, {useContext} from "react";
 import { AuthContext } from './utils/authContext';
 import SSRProvider from "react-bootstrap/SSRProvider";
 import { setContext } from "@apollo/client/link/context";
-import {SvgIcons, Footer, PrivateRoute} from './components';
+import {SvgIcons, Footer, PrivateRoute, FormProvider, ProfileProvider} from './components';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
-import {ApolloClient, InMemoryCache, ApolloProvider,useQuery,gql, concat, ApolloLink, HttpLink } from "@apollo/client";
-import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, CreateJob, ForgotPassword} from "./pages";
+import {ApolloClient, InMemoryCache, ApolloProvider, concat, ApolloLink, HttpLink } from "@apollo/client";
+import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo} from "./pages";
 
 
 
@@ -51,11 +51,16 @@ function App() {
             <Route exact path ="/signup" component = {SignUp} />
             <Route exact path ="/password-reset" component = {ForgotPassword} />
             <Route exact path ="/completeregistration" component = {CompleteSignUp} />
+            <ProfileProvider>
             <PrivateRoute exact path ="/profile" component = {UserProfile} />
             <PrivateRoute exact path ="/account-detail" component={UserAccount} />
             <PrivateRoute exact path ="/personal-info" component={PersonalInfo} />
             <PrivateRoute exact path ="/user-security" component={UpdateSecurity} />
             <PrivateRoute exact path ="/add-job-posting" component={CreateJob} />
+            <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
+            <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
+            <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
+            </ProfileProvider>
           </>
         <Footer />
         <SvgIcons />

@@ -1,26 +1,33 @@
-import React, {useContext} from "react";
+import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import data from "../data/user-profile.json";
 import dataSwiper from "../data/index3.json";
 import '../components/CustomProfileImage.css';
 import geoJSON from "../data/rooms-geojson.json";
 import { AuthContext } from '../utils/authContext';
+import {useQuery, useMutation, gql} from '@apollo/client';
 import { Container, Row, Col, Card, Badge } from "react-bootstrap";
+import React, {useContext, useState, useMemo, useEffect} from "react";
 import {Image, Icon, ReviewForm, Reviews, CardRoom, Header, RichSwiper} from "../components";
+import {PROFILE} from '../utils/queries';
 
-const properties = {
-  nav: {
-    light: true,
-    classes: "shadow",
-    color: "white",
-  },
-  loggedUser: true,
-  title: "User Profile",
-}
 
 const UserProfile = () => {
 
+
   const {state, dispatch} = useContext(AuthContext);
+  
+
+  const properties = {
+    nav: {
+      light: true,
+      classes: "shadow",
+      color: "white",
+    },
+    loggedUser: true,
+    title: "User Profile",
+  }
+  
 
 
   return (

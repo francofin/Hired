@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { ObjectId, Schema, model } = mongoose;
-const bcrypt = require("bcrypt");
 const dateFormat = require('../utils/dateFormat');
 
 const userSchema = new Schema({
@@ -41,38 +40,36 @@ const userSchema = new Schema({
       profileTextPargaraph: {
         type: String,
         minlength: 30,
-        maxlength: 300,
+        maxlength: 500,
     },
     profileTextPargaraph2: {
         type: String,
         minlength: 30,
-        maxlength: 300,
+        maxlength: 500,
     },
     profileTextOptional: {
         type: String,
         minlength: 30,
-        maxlength: 300,
+        maxlength: 500,
     },
     profileTextOptional2: {
         type: String,
         minlength: 30,
-        maxlength: 300,
+        maxlength: 500,
+    },
+    diveristyText: {
+        type: String,
+        minlength: 30,
+        maxlength: 500,
+    },
+    esgText: {
+        type: String,
+        minlength: 30,
+        maxlength: 500,
     },
     age: {
         type: String,
         trim: true
-    },
-    region: {
-        type: Schema.Types.ObjectId,
-        ref:"Region"
-    },
-    stateLocation: {
-        type: Schema.Types.ObjectId,
-        ref:"StateLocation"
-    },
-    city: {
-        type: Schema.Types.ObjectId,
-        ref:"City"
     },
     birthday: {
         type: Date,
@@ -83,13 +80,63 @@ const userSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+    },
+    industry:{
+        type:Schema.Types.ObjectId,
+        ref:"Industry",
+    },
     isPremium: {
         type: Boolean,
+        default:false
+    },
+    phoneNumber:{
+        type:String
     },
     role:{
         type:['String'],
         default: ['Job Seeker'],
-        enum:['Job Seeker', 'Employer', 'Admin', ]
+        enum:['Job Seeker', 'Employer', 'Admin', 'Student',]
+    },
+    isCompany:{
+        type:Boolean,
+        default:false
+    },
+    entity:{
+        type:'String',
+        default: ['candidate'],
+        enum:['Corporation', 'SBA', 'Candidate', 'Volunteer Association', 'Not For Profit', 'StartUp']
+    },
+    city: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    skills:{
+        type:Array
+    },
+    stateLocation: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    streetAddress:{
+        type:String,
+        require: false,
+        trim: true
+    },
+    postalCode:{
+        type:String,
+        required: false,
+        trim:true
+    },
+    country: {
+        type: String,
+        required: false,
+        trim: true
     },
     stripeSession:{},
    

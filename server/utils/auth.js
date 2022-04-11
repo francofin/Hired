@@ -18,7 +18,6 @@ module.exports= {
           const currentUser = await admin.auth().verifyIdToken(req.headers.authtoken);
           console.log("Current User Is", currentUser);
           return currentUser;
-
       } catch (err){
         console.log("AUTH CHECK ERROR", err);
         console.log("HEADERS", req.headers)

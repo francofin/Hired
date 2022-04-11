@@ -7,5 +7,8 @@ export {default as UserProfile } from './UserProfile';
 export {default as Internships } from './Internships';
 export {default as CompleteSignUp } from './CompleteSignUp';
 export {default as UserAccount } from './UserAccount';
+export {default as UpdateProfile } from './UpdateProfile';
 export {default as UpdateSecurity } from './UpdateSecurity';
 export {default as ForgotPassword } from './ForgotPassword';
+export {default as BasicInfo } from './UpdateProfile/BasicInfo';
+export {default as SecondaryInfo } from './UpdateProfile/SecondaryInfo';

@@ -6,9 +6,10 @@ import React, {useState, useContext} from "react";
 import { AuthContext } from '../utils/authContext';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Container,Row,Col,Button,Collapse,Form, Card,Breadcrumb} from "react-bootstrap";
+import { updateEmail , signInWithEmailAndPassword, getIdTokenResult  } from "firebase/auth";
 import {faAddressBook,faBirthdayCake,faEnvelopeOpen,faIdCard,faPhone,} from "@fortawesome/free-solid-svg-icons";
 
-
+//Add updateEmail functionality
 
 const PersonalInfo = () => {
   const [personalCollapse, setPersonalCollapse] = useState(false)
