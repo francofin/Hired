@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 
-const USER_INFO =gql`
+export const USER_INFO =gql`
     fragment userInfo on User {
         _id
         firstName
@@ -43,6 +43,31 @@ const USER_INFO =gql`
             public_id
         }
     }
+`
+
+
+export const JOB_INFO = gql`
+    fragment jobInfo on Job {
+        _id
+        descriptionParagraph
+        title
+        images {
+            url
+            public_id
+        }
+        employer {
+            _id
+            companyName
+            firstName
+            lastName
+            
+        }
+        companyName
+        createdAt
+        skills
+
+    }
+
 `
 
 

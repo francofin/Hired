@@ -13,7 +13,6 @@ import {Image, Instagram, Guides, LastMinute, SearchBar, RichSwiper, Header} fro
     
 const Internships = () => {
 
-  const {state, dispatch} = useContext(AuthContext);
 
   const properties = {
     nav: {
@@ -29,7 +28,7 @@ const Internships = () => {
 
   return (
     <React.Fragment>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties}/>
       <RichSwiper
         className="multi-slider"
         data={data.swiper}

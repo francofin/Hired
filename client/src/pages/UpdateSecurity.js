@@ -21,7 +21,7 @@ const UpdateSecurity = () => {
   const [confirmedUpdatedPassword, setConfirmedUpdatedPassword] = useState("");
 
 
-  const {state, dispatch} = useContext(AuthContext);
+ 
   const {data} = useQuery(PROFILE);
 
   const confirmPasswordUpdate = async (e) => {
@@ -92,7 +92,7 @@ const UpdateSecurity = () => {
 
   return (
     <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties}/>
         <main>
             <section className="py-5">
             <Container>

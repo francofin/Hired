@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Select from "react-select";
 import { Link } from 'react-router-dom';
 import { useDropzone } from "react-dropzone";
@@ -10,10 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faChevronLeft,faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileForm = (props) => {
-  const {state, dispatch} = useContext(AuthContext);
+  const {state} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [isCorp, setIsCorp] = useState(false);
-
+  const [userImages, setUserImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const data = props.data
 
@@ -36,7 +38,19 @@ const ProfileForm = (props) => {
           0,
           (uri) => {
             console.log(uri);
-            setUserProfile({...userProfile, images:[uri]})
+            // 
+            axios.post(`${process.env.REACT_APP_CLOUDINARYUPLOAD_ENDPOINT}/uploadimagestoa`, {image: uri}, {
+              headers:{
+                authtoken:state.user.token,
+              }
+            }).then((response) => {
+              setLoading(false)
+              console.log("Cloudingary Upload", response)
+              setUserProfile({...userProfile, images:[...userProfile.images, response.data]})
+            }).catch(error => {
+              setLoading(false)
+              console.log("Upload to Cloudinary failed")
+            })
           },
           "base64",
           200,
@@ -48,18 +62,38 @@ const ProfileForm = (props) => {
     }
   }
 
+  const handleImageRemove = (id) => {
+    setLoading(true);
+    axios.post(`${process.env.REACT_APP_CLOUDINARYUPLOAD_ENDPOINT}/removeimagesfroma`, {public_id: id},
+    {
+      headers:{
+        authtoken:state.user.token,
+      }
+    })
+    .then((response) => {
+      setLoading(false);
+      let filteredImages = userProfile.images.filter((item) => {
+        return item.public_id !== id;
+      });
+      setUserProfile({...userProfile, images:filteredImages});
+      setUserImages([...filteredImages]);
+    })
+    .catch(error => {
+      console.log(error);
+      setLoading(false);
+    })
+  }
+
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      setUserProfile({
-        ...userProfile,
-        ["images"]: acceptedFiles.map((file) =>
+      setUserImages(acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
         ),
-      })
+      )
     },
   })
 
@@ -320,9 +354,9 @@ useEffect(() => {
                       </div>
                     </div>
                     <Row className="mt-4">
-                      {userProfile["images"] &&
-                        userProfile["images"].map((file) => (
-                          <div key={file.name} className="col-lg-4">
+                      {userImages &&
+                        userImages.map((file) => (
+                          <div key={file.name} className="col-lg-4" onClick={(image) => handleImageRemove(image.public_id)}>
                             <div>
                               <img
                                 src={file.preview}

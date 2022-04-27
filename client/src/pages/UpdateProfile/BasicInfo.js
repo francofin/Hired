@@ -10,7 +10,6 @@ import {Image, ProgressBar, Header, ProfileForm, FormContext} from "../../compon
 
 const UserAdd1 = () => {
 
-    const {state, dispatch} = useContext(AuthContext);
     const [userProfile, setUserProfile] = useContext(ProfileContext);
     
     const properties = {
@@ -26,7 +25,7 @@ const UserAdd1 = () => {
 
   return (
     <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties} />
     <React.Fragment>
       <ProgressBar progress={20} />
       <section className="py-5">

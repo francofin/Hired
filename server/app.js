@@ -9,7 +9,9 @@ const cloudinary = require('cloudinary');
 const AWS = require('aws-sdk');
 const app = express();
 const {nanoId} = require('nanoid');
+const {uploadVideoFromUser, removeVideoFromUser} = require('./utils/videoUpload');
 const { authCheckImageMiddleware } = require('./utils/auth');
+const formidableMiddleware  = require('express-formidable');
 
 const awsConfig = {
     accessKeyId:process.env.AWS_ACCESS_KEY_ID,
@@ -66,8 +68,9 @@ app.get('/rest', function(req, res) {
 
 app.post('/uploadimagestoa', authCheckImageMiddleware, (req, res)=>{
     cloudinary.v2.uploader.upload(req.body.image, (result) => {
+        console.log("Image Upload Result", result)
         res.send({
-            url: result.url,
+            url: result.secure_url,
             public_id: result.public_id
         })
     }, {
@@ -87,6 +90,9 @@ app.post('/removeimagesfroma',authCheckImageMiddleware, (req, res) => {
     });
 });
 
+
+app.post('/uploadvideouser', authCheckImageMiddleware, formidableMiddleware(), uploadVideoFromUser )
+app.post('/removevideouser', authCheckImageMiddleware, removeVideoFromUser)
 
 
 // app.get('/*', (req, res)=>{

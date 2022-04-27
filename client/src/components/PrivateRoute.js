@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 import { AuthContext } from '../utils/authContext';
 import React, {useEffect, useState, useContext} from "react";
-
+import SpinnerRedirect from './SpinnerRedirect';
 
 
 const PrivateRoute = ({children, ...rest}) => {
@@ -18,16 +18,14 @@ const PrivateRoute = ({children, ...rest}) => {
     }, [state.user]);
 
 
-    const renderContent = () =>{
-        return(
-            <>
-                <Route {...rest} />
-            </>
-        )
-    }
+    const renderContent = () =>(
+        <>
+            <Route {...rest} />
+        </>
+    )
 
 
-    return user ? renderContent() : ""
+    return user ? renderContent() : <SpinnerRedirect path="/login"/>;
 
 };
 

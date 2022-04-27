@@ -13,15 +13,6 @@ import { signInWithEmailLink, updatePassword, getIdTokenResult } from "firebase/
 import { CREATE_USER } from '../utils/mutations';
 
 
-// const CREATE_USER = gql`
-//     mutation createUser {
-//       createUser{
-//         userName
-//         email
-//       }
-//     }
-// `
-
 const CompleteSignUp = () => {
 
     const properties  = {

@@ -19,7 +19,6 @@ const Header = (props) => {
   const [parentName, setParentName] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
 
-  const {user} = state;
   const size = UseWindowSize();
   const onLinkClick = (parent) => {
     size.width < 991 && setCollapsed(!collapsed)
@@ -115,8 +114,10 @@ const Header = (props) => {
                 menu.map((item) =>
                   item.dropdown || item.megamenu ? (
                     // show entire menu to unlogged user or hide items that have hideToLoggedUser set to true
-                    !props.userState.user ||
-                    (props.userState.user && !item.hideToLoggedUser) ? (
+                    // !props.userState.user ||
+                    // (props.userState.user && !item.hideToLoggedUser) 
+                    !state.user ||
+                    (state.user && !item.hideToLoggedUser) ? (
                       // DROPDOWN ITEM
                       <DropdownMenuItem
                         onLinkClick={onLinkClick}
@@ -127,8 +128,8 @@ const Header = (props) => {
                     ) : (
                       ""
                     )
-                  ) : (props.userState.user && !item.hideToLoggedUser) ||
-                    !props.userState.user ? (
+                  ) : (state.user && !item.hideToLoggedUser) ||
+                    !state.user ? (
                     // NAV ITEM
                     <Nav.Item
                       key={item.title}
@@ -157,7 +158,7 @@ const Header = (props) => {
                   )
                 )}
               {/* USER MENU */}
-              {props.userState.user && <UserMenu onLinkClick={onLinkClick} />}
+              {state.user && <UserMenu onLinkClick={onLinkClick} />}
               {/* USER MENU */}
             </Nav>
             {/* END MENU */}

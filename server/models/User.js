@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { ObjectId, Schema, model } = mongoose;
 const dateFormat = require('../utils/dateFormat');
+const {nanoId} = require('nanoid');
+const {videoSchema} = require('./Video');
 
 const userSchema = new Schema({
     firstName: {
@@ -28,12 +30,10 @@ const userSchema = new Schema({
         type:Array,
         default:[{
             url:'https://via.placeholder.com/200x200.png?text=Profile Images',
-            public_id:Date.now
+            public_id:`${nanoId()}.${Date.now()}`
         }]
     },
-    videos:{
-        type:Array,
-    },
+    videos:[videoSchema],
     articles:{
         type:Array,
     },
@@ -85,15 +85,14 @@ const userSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-    industry:{
-        type:Schema.Types.ObjectId,
-        ref:"Industry",
-    },
     isPremium: {
         type: Boolean,
         default:false
     },
     phoneNumber:{
+        type:String
+    },
+    title:{
         type:String
     },
     role:{
@@ -105,10 +104,26 @@ const userSchema = new Schema({
         type:Boolean,
         default:false
     },
+    companyName: {
+        type: String,
+        trim: true,
+    },
+    companyEmail: {
+        type:String,
+        trim:true
+    },
+    website:[{
+        type:String,
+        trim: true
+    }],
     entity:{
         type:'String',
-        default: ['candidate'],
-        enum:['Corporation', 'SBA', 'Candidate', 'Volunteer Association', 'Not For Profit', 'StartUp']
+        default: ['Applicant'],
+        enum:['Corporation', 'SBA', 'Candidate', 'Volunteer Association', 'Not For Profit', 'StartUp', 'Applicant']
+    },
+    industry:{
+        type:ObjectId,
+        ref:"Industry"
     },
     city: {
         type: String,
@@ -133,10 +148,18 @@ const userSchema = new Schema({
         required: false,
         trim:true
     },
+    zipCode:{
+        type:String,
+        required:false,
+        trim:true
+    },
     country: {
         type: String,
         required: false,
         trim: true
+    },
+    connections:{
+        type:Array
     },
     stripeSession:{},
    

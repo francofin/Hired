@@ -7,9 +7,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 
 
 
-const CreateJob = () => {
 
-    const {state, dispatch} = useContext(AuthContext);
+const CreateJob = () => {
 
     const properties = {
       nav: {
@@ -21,10 +20,12 @@ const CreateJob = () => {
         title: "Add your listing",
     }
 
+    
+
 
   return (
     <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties}/>
     <React.Fragment>
       <ProgressBar progress={0} />
         <main>

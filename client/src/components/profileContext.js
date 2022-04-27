@@ -7,7 +7,7 @@ const ProfileContext = createContext([{}, () => {}]);
 
 const ProfileProvider = (props) => {
 
-    const [profile, setProfile] = useState({
+    const initialState = {
         firstName:'',
         lastName:'',
         userName:'',
@@ -20,41 +20,35 @@ const ProfileProvider = (props) => {
         profileTextOptional:'',
         profileTextOptional2:'',
         diveristyText:'',
+        title:'',
         esgText:'',
         age:'',
-        location:'',
+        industry:'',
         birthday:'',
+        website:[],
         isPremium:false,
         phoneNumber:'',
-        role:'Job Seeker',
+        role:['Job Seeker'],
         isCompany:false,
-        entity:'employee',
+        companyName:'',
+        entity:'Applicant',
         city:'',
         stateLocation:'',
         country:'',
         streetAddress:'',
         postalCode:'',
+        zipCode:'',
         skills:[]
-    });
+    };
 
-    // const PROFILE = gql`
-    //       query{
-    //         profile{
-    //           _id
-    //           firstName
-    //           lastName
-    //           userName
-    //           images {
-    //               url
-    //               public_id
-    //           }
-    //           videos {
-    //             url
-    //             public_id
-    //           }
-    //         }
-    //       }
-    // `
+    const [profile, setProfile] = useState(initialState);
+
+    const resetState = () => {
+        setProfile(initialState)
+
+        return profile
+    };
+
 
     const {data} = useQuery(PROFILE);
 
@@ -89,13 +83,16 @@ const ProfileProvider = (props) => {
                 country:data.profile.country,
                 streetAddress:data.profile.streetAddress,
                 postalCode:data.profile.postalCode,
+                zipCode:data.profile.zipCode, 
+                website:data.profile.website,
+                title:data.profile.title,
                 skills:data.profile.skills
             })
         } 
         
     }, [])
 
-    const value = [profile, setProfile];
+    const value = [profile, setProfile, resetState];
 
     return <ProfileContext.Provider value={value}>{props.children}</ProfileContext.Provider>
 }

@@ -28,4 +28,3 @@ module.exports= gql`
 `
 
 
- // newPost(title:String!, description:String!): Post

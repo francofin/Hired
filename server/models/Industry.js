@@ -7,6 +7,10 @@ const industrySchema = new Schema({
     type: String,
     required: true,
     trim: true
+  }, 
+  gicsCode: {
+    type:Number,
+    required:false,
   }
 });
 

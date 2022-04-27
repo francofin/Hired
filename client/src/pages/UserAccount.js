@@ -9,7 +9,7 @@ import {PROFILE} from '../utils/queries';
 
 const UserAccount = () => {
 
-    const {state, dispatch} = useContext(AuthContext);
+
     const {data} = useQuery(PROFILE);
     const properties = {
         nav: {
@@ -23,7 +23,7 @@ const UserAccount = () => {
 
     return (
     <div style={{paddingTop:'72px'}}>
-      <Header headerData={properties} userState={state}/>
+      <Header headerData={properties}/>
         <main>
             <section className="py-5">
                 <Container>

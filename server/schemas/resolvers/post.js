@@ -32,7 +32,6 @@ const posts = [
 const totalPosts = () => posts.length;
 
 const allPosts = async (parent, args, {req}) => {
-    await authMiddleware({req});
     return posts;
 };
 

@@ -1,7 +1,6 @@
 [
   {
     "title": "Home",
-    "link":"/",
     "dropdown": [
       {
         "title": "Search Jobs",

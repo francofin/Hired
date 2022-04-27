@@ -15,7 +15,6 @@ const PersonalInfo = () => {
   const [personalCollapse, setPersonalCollapse] = useState(false)
   const [addressCollapse, setAddressCollapse] = useState(false)
 
-  const {state, dispatch} = useContext(AuthContext);
 
   const properties = {
     nav: {
@@ -29,7 +28,7 @@ const PersonalInfo = () => {
 
   return (
     <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties} />
         <main>
             <section className="py-5">
             <Container>

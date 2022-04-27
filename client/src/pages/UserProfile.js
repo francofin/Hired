@@ -9,7 +9,7 @@ import {useQuery, useMutation, gql} from '@apollo/client';
 import { Container, Row, Col, Card, Badge } from "react-bootstrap";
 import React, {useContext, useState, useMemo, useEffect} from "react";
 import {Image, Icon, ReviewForm, Reviews, CardRoom, Header, RichSwiper} from "../components";
-import {PROFILE} from '../utils/queries';
+import {PROFILE, USER_JOBS} from '../utils/queries';
 
 
 const UserProfile = () => {
@@ -17,8 +17,9 @@ const UserProfile = () => {
 
   const {state, dispatch} = useContext(AuthContext);
   const {data:userProfileData} = useQuery(PROFILE);
+  // const {data:userJobPostings} = useQuery(USER_JOBS);
 
-  // console.log("User Profile from Query", userProfileData)
+  console.log("User Profile from Query", userProfileData)
 
   const properties = {
     nav: {
@@ -26,7 +27,6 @@ const UserProfile = () => {
       classes: "shadow",
       color: "white",
     },
-    loggedUser: true,
     title: "User Profile",
   }
   
@@ -35,7 +35,8 @@ const UserProfile = () => {
   return (
     <React.Fragment>
       <div style={{paddingTop:'72px'}}>
-    <Header headerData={properties} userState={state}/>
+    <Header headerData={properties} />
+    {/* <Header headerData={properties} userState={state}/> */}
     <main>
     <section className="py-5">
       <Container>
@@ -143,4 +144,4 @@ const UserProfile = () => {
   )
 }
 
-export default UserProfile
+export default UserProfile;

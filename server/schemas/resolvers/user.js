@@ -20,6 +20,12 @@ const profile = async(parent, args, {req}) => {
     return user 
 }
 
+const publicProfile = async(parent, args, {req}) => {
+    const user = await User.findOne({userName: args.userName}).exec();
+    return user
+}
+
+
 const updateUser = async(parent, args, {req}) => {
     const currentUser = await authMiddleware({req});
     console.group(args)
@@ -27,13 +33,34 @@ const updateUser = async(parent, args, {req}) => {
     return updatedUser 
 }
 
+const allUsers = async(parent, args, {req}) => await User.find({}).exec();
+
+const addConnection = async(parent, args, {req}) => {
+    const currentUser = await authMiddleware({req});
+    const user = User.findOne({email:currentUser.email}).exec();
+    let userConnection = User.findOne({_id:args.userId}).exec();
+
+    if(!userConnection.connections.includes(user._id)) {
+        const updatedUser = User.findByIdAndUpdate({_id: user._id}, 
+            {connections: userConnection._id}, {new:true}).exec();
+        
+        return updatedUser;
+    }
+
+
+    return user;
+}
+
 module.exports ={
     Query: {
         profile,
+        publicProfile,
+        allUsers
     },
     Mutation:{
         createUser,
-        updateUser
+        updateUser,
+        addConnection
     }, 
 
 }

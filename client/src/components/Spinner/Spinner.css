@@ -1,6 +1,6 @@
 .spinner-wrapper{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 40%
+  position: relative;
+  margin: 5%;
+  transform: translateX(0%);
+  top: 50%
 }

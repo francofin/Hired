@@ -1,5 +1,6 @@
 import swal from 'sweetalert';
 import {Image, Icon} from "../components";
+import { CREATE_USER } from '../utils/mutations';
 import {gql, useMutation } from "@apollo/client";
 import { AuthContext } from '../utils/authContext';
 import React, { useState, useContext } from "react";
@@ -12,14 +13,14 @@ import { signInWithEmailAndPassword, signInWithPopup, getIdTokenResult, GoogleAu
 
 
 
-const CREATE_USER = gql`
-    mutation createUser {
-      createUser{
-        userName
-        email
-      }
-    }
-`
+// const CREATE_USER = gql`
+//     mutation createUser {
+//       createUser{
+//         userName
+//         email
+//       }
+//     }
+// `
 
 const Login = () => {
 

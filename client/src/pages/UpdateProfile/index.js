@@ -10,7 +10,7 @@ import React, {useContext, useState, useMemo, useEffect} from "react";
 
 const UpdateProfile = () => {
 
-    const {state, dispatch} = useContext(AuthContext);
+    
     const [userProfile, setUserProfile] = useContext(ProfileContext);
 
     console.log("From Profile Context", userProfile);
@@ -29,7 +29,7 @@ const UpdateProfile = () => {
 
     return (
         <div style={{paddingTop:'72px'}}>
-        <Header headerData={properties} userState={state}/>
+        <Header headerData={properties}/>
         <React.Fragment>
           <ProgressBar progress={0} />
           <section className="py-5 py-lg-7">

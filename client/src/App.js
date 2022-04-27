@@ -11,7 +11,8 @@ import {SvgIcons, Footer, PrivateRoute, FormProvider, ProfileProvider} from './c
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
 import {ApolloClient, InMemoryCache, ApolloProvider, concat, ApolloLink, HttpLink } from "@apollo/client";
-import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo} from "./pages";
+import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo, UserListing} from "./pages";
+
 
 
 
@@ -50,8 +51,10 @@ function App() {
             <Route exact path ="/login" component = {Login} />
             <Route exact path ="/signup" component = {SignUp} />
             <Route exact path ="/password-reset" component = {ForgotPassword} />
+            <Route exact path ="/all-users" component = {UserListing} />
             <Route exact path ="/completeregistration" component = {CompleteSignUp} />
             <ProfileProvider>
+            <Switch>
             <PrivateRoute exact path ="/profile" component = {UserProfile} />
             <PrivateRoute exact path ="/account-detail" component={UserAccount} />
             <PrivateRoute exact path ="/personal-info" component={PersonalInfo} />
@@ -60,6 +63,7 @@ function App() {
             <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
             <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
             <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
+            </Switch>
             </ProfileProvider>
           </>
         <Footer />

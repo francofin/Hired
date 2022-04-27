@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import USER_INFO from './fragments';
+import {USER_INFO, JOB_INFO} from './fragments';
 
 
 
@@ -14,54 +14,59 @@ export const PROFILE = gql`
     ${USER_INFO}
     `;
 
+export const GET_ALL_POSTS = gql`
+    query {
+        allPosts {
+            id
+            title
+            description
+        }
+    }
+`;
+
+export const GET_ALL_JOBS = gql`
+    query {
+      allJobs {
+        ...jobInfo
+      }
+    }
+    ${JOB_INFO}
+`
+
+export const USER_JOBS = gql`
+    query {
+      userJobs {
+        ...jobInfo
+      }
+    }
+    ${JOB_INFO}
+`;
 
 
 
+export const ALL_USERS = gql`
+  query {
+    allUsers{
+        ...userInfo
+      }
+    }
+  ${USER_INFO}
+`;
 
+export const PUBLIC_PROFILE = gql`
+query publicProfile($userName: String!) {
+  publicProfile(userName: $userName) {
+    _id
+    userName
+    firstName
+    lastName
+    title
+    email
+    images {
+      url
+      public_id
+    }
+  }
+}
+`;
 
-// const PROFILE = gql`
-// query{
-//   profile{
-//     _id
-//     firstName
-//     lastName
-//     userName
-//     email
-//     profileTextPargaraph
-//     profileTextPargaraph2
-//     profileTextOptional
-//     profileTextOptional2
-//     age
-//     diveristyText
-//     esgText
-//     phoneNumber
-//     birthday
-//     createdAt
-//     updatedAt
-//     role
-//     isCompany
-//     entity
-//     country
-//     city
-//     stateLocation
-//     streetAddress
-//     postalCode
-//     skills{
-//         name
-//     }
-//     images {
-//         url
-//         public_id
-//     }
-//     videos {
-//       url
-//       public_id
-//     }
-//     articles {
-//         url
-//         public_id
-//       }
-
-//   }
-// }
-// `

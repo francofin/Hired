@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import USER_INFO from './fragments';
+import {USER_INFO, JOB_INFO} from './fragments';
 
 export const UPDATE_USER = gql`
     mutation updateUser($input: UpdateUserInput!) {
@@ -20,52 +20,28 @@ export const CREATE_USER = gql`
     }
 `
 
+export const CREATE_JOB = gql`
+    mutation newJob($input: JobInput!) {
+      newJob(input: $input){
+        ...jobInfo
+      }
+    }
+    ${JOB_INFO}
+`
 
+export const DELETE_JOB = gql`
+    mutation deleteJob($jobId: String!) {
+      deleteJob(jobId: $jobId){
+        _id
+      }
+    }
+`
 
-
-// const UPDATE_USER = gql`
-//     mutation updateUser($input: UpdateUserInput!) {
-//         updateuser(input: $input) {
-//             _id
-//             firstName
-//             lastName
-//             userName
-//             email
-//             profileTextPargaraph
-//             profileTextPargaraph2
-//             profileTextOptional
-//             profileTextOptional2
-//             age
-//             diveristyText
-//             esgText
-//             phoneNumber
-//             birthday
-//             createdAt
-//             updatedAt
-//             role
-//             isCompany
-//             entity
-//             country
-//             city
-//             stateLocation
-//             streetAddress
-//             postalCode
-//             skills{
-//                 name
-//             }
-//             images {
-//                 url
-//                 public_id
-//             }
-//             videos {
-//             url
-//             public_id
-//             }
-//             articles {
-//                 url
-//                 public_id
-//             }
-//         }
-//     }
-
-// `
+export const ADD_CONNECTION = gql`
+    mutation addConnection($userId: String!){
+      addConnection(userId: $userId){
+        ...userInfo
+      }
+    }
+    ${USER_INFO}
+`
