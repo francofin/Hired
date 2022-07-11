@@ -1,6 +1,6 @@
 const fs = require('fs');
 const app = require('./app');
-// const https = require('https');
+const https = require('https');
 const http = require('http');
 const db = require('./config/connection');
 const {resolvers, typeDefs} = require('./schemas');

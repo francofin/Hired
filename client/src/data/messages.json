@@ -1,0 +1,48 @@
+{
+    "hero": {
+        "title": "Someone's Reaching Out!",
+        "subTitle": "Personal Messages Help Strengthen Your Impressions",
+        "img": "img/cityscape.jpg",
+        "data-tag":"Photo by Peng LIU: https://www.pexels.com/photo/timelapse-photography-of-vehicle-on-concrete-road-near-in-high-rise-building-during-nighttime-169677/"
+    },
+    "searchOptions": [
+        {
+            "value": "small",
+            "label": "Restaurants"
+        },
+        {
+            "value": "medium",
+            "label": "Hotels"
+        },
+        {
+            "value": "large",
+            "label": "Cafes"
+        },
+        {
+            "value": "x-large",
+            "label": "Garages"
+        }
+    ],
+    "popular": {
+        "title": "Popular places around you",
+        "subTitle": "Try something new today",
+        "button": "See all places",
+        "buttonLink": "/category-2"
+    },
+    "travel": {
+        "title": "Travel & Explore",
+        "subtitle": "Find the best spots",
+        "content": "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections",
+        "button": "Get started",
+        "buttonLink": "/category-rooms",
+        "img": "photo-1507915135761-41a0a222c709.jpg"
+    },
+    "bottomBlock": {
+        "title": "Start using Directory today",
+        "subTitle": "Directory is the best way to find & discover great local businesses",
+        "content": "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed in",
+        "button": "Create Your Account",
+        "buttonLink": "#",
+        "small": "It's free!"
+    }
+}

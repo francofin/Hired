@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const {Schema, model} = mongoose;
 const {ObjectId} = mongoose.Schema;
 
-export const videoSchema = new Schema({
+const videoSchema = new Schema({
     videoName:{
         type:String,
         required:true,
@@ -22,3 +22,5 @@ export const videoSchema = new Schema({
     videoLink:{},
 
 }, {timestamps:true});
+
+module.exports = {videoSchema}

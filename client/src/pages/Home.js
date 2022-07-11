@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {Header} from '../components';
 import blog from "../data/blog.json";
 import data from "../data/index.json";
@@ -5,7 +6,7 @@ import { Link } from 'react-router-dom';
 import {useQuery} from "@apollo/client";
 import {useHistory} from 'react-router-dom';  
 import {GET_ALL_POSTS} from '../utils/queries'; 
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { AuthContext } from '../utils/authContext';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,9 +27,28 @@ const Home = () => {
     title: "Homepage",
   }
 
+  useEffect(() => {
+
+    const techNewsURL = `${process.env.REACT_APP_NEWS_API}technology&count=100&mkt=en-us`;
+    const azureHeaders = {
+      "Ocp-Apim-Subscription-Key": process.env.REACT_APP_AZURE_BING_KEY,
+    }
+    const fetchTechNews = async() => {
+      const response = await axios.get(techNewsURL, {
+        headers:{
+          "Ocp-Apim-Subscription-Key":process.env.REACT_APP_AZURE_BING_KEY
+        }
+      });
+      console.log("My Bing Response", response);
+    }
+
+    fetchTechNews();
+    
+
+  }, [])
+
   const {state, dispatch} = useContext(AuthContext);
 
-  console.log("Posts", useQuery(GET_ALL_POSTS));
 
 
   // console.log(postData)

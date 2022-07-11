@@ -6,12 +6,12 @@ import "./scss/style.default.scss";
 import React, {useContext} from "react";
 import { AuthContext } from './utils/authContext';
 import SSRProvider from "react-bootstrap/SSRProvider";
-import { setContext } from "@apollo/client/link/context";
 import {SvgIcons, Footer, PrivateRoute, FormProvider, ProfileProvider} from './components';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
 import {ApolloClient, InMemoryCache, ApolloProvider, concat, ApolloLink, HttpLink } from "@apollo/client";
-import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo, UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo, UserListing} from "./pages";
+import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo,
+       UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo, UserListing, UserMessages} from "./pages";
 
 
 
@@ -63,6 +63,7 @@ function App() {
             <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
             <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
             <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
+            <PrivateRoute exact path ="/user-messages" component={UserMessages} />
             </Switch>
             </ProfileProvider>
           </>

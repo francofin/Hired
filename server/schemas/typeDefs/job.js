@@ -12,6 +12,7 @@ module.exports= gql`
     input JobInput {
         _id: ID!
         title: String!
+        email:String!
         descriptionParagraph:String!
         descriptionParagraph2: String!
         descriptionOptional: String
@@ -20,10 +21,10 @@ module.exports= gql`
         videos:[VideoInput]
         country:String
         city:String
+        createdAt: Datetime
         stateLocation:String
         streetAddress:String
-        postalCode:String
-        zipCode:String
+        zipPostalCode:String
         positionFilled:Boolean
         skills: [SkillInput]
     }
@@ -39,10 +40,10 @@ module.exports= gql`
         videos:[VideoInput]
         country:String
         city:String
+        updatedAt: Datetime
         stateLocation:String
         streetAddress:String
-        postalCode:String
-        zipCode:String
+        zipPostalCode:String
         positionFilled:Boolean
         skills: [SkillInput]
     }
@@ -61,20 +62,24 @@ module.exports= gql`
         city:String
         stateLocation:String
         streetAddress:String
-        postalCode:String
-        zipCode:String
+        zipPostalCode:String
         createdAt:Datetime
+        updatedAt: Datetime
         positionFilled:Boolean
         skills: [Skill]
         applicants: [User!]
         candidates:[User!]
         matchedCandidates:[User!]
+        applicantCount: Int!
+        candidateCount: Int!
+        matchCount: Int!
+        daysActiveCount: Int!
     }
 
     type Query {
         allJobs: [Job!]!
-        userJobs:[Job]
-        singleUserJob(jobId:String!):Job!
+        userJobs: [Job!]!
+        singleUserJob(jobId: String!): Job!
         matchedJobs:[Job]
         appliedJobs:[Job]
         
@@ -86,8 +91,6 @@ module.exports= gql`
         newJob(input: JobInput!): Job!
         updateJob(input: UpdateJobInput!): Job!
         deleteJob(jobId: String!): Job!
-        applyToJob(jobid:String): Job!
         showUserInterest(userId:String!, jobId:String!): User!
-        matchJobAndCandidate(userId: String, jobId: String): User
     }
 `

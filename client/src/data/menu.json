@@ -18,10 +18,11 @@
         "title": "About",
         "link": "/index-4"
       }
-    ]
+    ],
+    "showToLoggedUser": true
   },
   {
-    "title": "Template",
+    "title": "User DashBoard",
     "position": "static",
     "megamenu": [
       [
@@ -50,7 +51,7 @@
       ],
       [
         {
-          "title": "Rooms",
+          "title": "Jobs",
           "links": [
             {
               "title": "Category - Map on the top",
@@ -71,7 +72,7 @@
           ]
         },
         {
-          "title": "Blog",
+          "title": "Saved Jobs",
           "links": [
             {
               "title": "Blog",
@@ -83,29 +84,11 @@
               "as": "/blog/autumn-fashion-tips-and-tricks"
             }
           ]
-        },
-        {
-          "title": "Pages",
-          "links": [
-            {
-              "title": "Comparison",
-              "link": "/compare"
-            },
-            {
-              "title": "Team",
-              "link": "/team"
-            },
-            {
-              "title": "Contact",
-              "link": "/contact",
-              "parent": "Contact"
-            }
-          ]
         }
       ],
       [
         {
-          "title": "Pages",
+          "title": "Applied Jobs",
           "links": [
             {
               "title": "Pricing",
@@ -143,19 +126,6 @@
               "new": true
             }
           ]
-        },
-        {
-          "title": "Host",
-          "links": [
-            {
-              "title": "Add new listing - 6 pages",
-              "link": "/user-add-0"
-            },
-            {
-              "title": "Bookings - list view",
-              "link": "/user-list"
-            }
-          ]
         }
       ],
       [
@@ -179,14 +149,6 @@
               "link": "/user-security"
             },
             {
-              "title": "Sign in",
-              "link": "/login"
-            },
-            {
-              "title": "Sign up",
-              "link": "/signup"
-            },
-            {
               "title": "Booking process - 4 pages",
               "link": "/user-booking-1"
             },
@@ -199,18 +161,8 @@
               "link": "/user-booking-detail"
             },
             {
-              "title": "Invoice",
-              "link": "/user-invoice",
-              "new": true
-            },
-            {
               "title": "Messages",
               "link": "/user-messages",
-              "new": true
-            },
-            {
-              "title": "Message Detail",
-              "link": "/user-messages-detail",
               "new": true
             }
           ]
@@ -219,27 +171,28 @@
     ],
     "services": [
       {
-        "title": "Best rentals",
+        "title": "Apply Anywhere",
         "content": "Find the perfect place",
         "icon": "destination-map-1"
       },
       {
-        "title": "Earn points",
+        "title": "Landing Your Dream Job",
         "content": "And get great rewards",
         "icon": "money-box-1"
       },
       {
-        "title": "020-800-456-747",
+        "title": "Impress",
         "content": "24/7 Available Support",
         "icon": "customer-support-1"
       },
       {
-        "title": "Secure Payment",
+        "title": "We're There With You.",
         "content": "Secure Payment",
         "icon": "secure-payment-1"
       }
     ],
-    "image": "/content/img/photo/photo-1521170665346-3f21e2291d8b.jpg"
+    "image": "/content/img/photo/photo-1521170665346-3f21e2291d8b.jpg",
+    "showToLoggedUser": false
   },
   {
     "title": "Contact",
@@ -248,58 +201,6 @@
   {
     "title": "Intern/Volunteer",
     "link": "/intern"
-  },
-  {
-    "title": "Docs",
-    "hideToLoggedUser": true,
-    "dropdown": [
-      {
-        "title": "Documentation",
-        "links": [
-          {
-            "title": "Introduction",
-            "link": "/docs/docs-introduction"
-          },
-          {
-            "title": "Directory structure",
-            "link": "/docs/docs-directory-structure"
-          },
-          {
-            "title": "Next.js",
-            "link": "/docs/docs-next"
-          },
-          {
-            "title": "Customizing CSS",
-            "link": "/docs/docs-customizing-css"
-          },
-          {
-            "title": "Migration to v2",
-            "link": "/docs/docs-migration-v2"
-          },
-          {
-            "title": "Credits",
-            "link": "/docs/docs-credits"
-          },
-          {
-            "title": "Changelog",
-            "link": "/docs/docs-changelog"
-          }
-        ]
-      },
-      {
-        "title": "Components",
-        "links": [
-          {
-            "title": "Bootstrap",
-            "link": "/docs/components-bootstrap"
-          },
-          {
-            "title": "Theme",
-            "link": "/docs/components-directory"
-          }
-        ]
-      }
-    ]
   },
   {
     "title": "Sign in",
@@ -315,6 +216,6 @@
     "title": "Post a Job",
     "link": "/login",
     "button": true,
-    "hideToLoggedUser": true
+    "showToLoggedUser": false
   }
 ]

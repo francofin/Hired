@@ -112,11 +112,11 @@ const Header = (props) => {
             <Nav className="ms-auto align-items-lg-center">
               {menu &&
                 menu.map((item) =>
-                  item.dropdown || item.megamenu ? (
+                  item.dropdown || item.megamenu  ? (
                     // show entire menu to unlogged user or hide items that have hideToLoggedUser set to true
                     // !props.userState.user ||
                     // (props.userState.user && !item.hideToLoggedUser) 
-                    !state.user ||
+                    (!state.user && item.showToLoggedUser) ||
                     (state.user && !item.hideToLoggedUser) ? (
                       // DROPDOWN ITEM
                       <DropdownMenuItem

@@ -42,6 +42,15 @@ export const USER_JOBS = gql`
     ${JOB_INFO}
 `;
 
+export const SINGLE_USER_JOB = gql`
+  query singleUserJob($jobId: String!){
+    singleUserJob(jobId: $jobId) {
+      ...jobInfo
+    }
+  }
+  ${JOB_INFO}
+`;
+
 
 
 export const ALL_USERS = gql`

@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary');
 const AWS = require('aws-sdk');
 const app = express();
-const {nanoId} = require('nanoid');
+const {nanoid} = require('nanoid');
 const {uploadVideoFromUser, removeVideoFromUser} = require('./utils/videoUpload');
 const { authCheckImageMiddleware } = require('./utils/auth');
 const formidableMiddleware  = require('express-formidable');
@@ -49,7 +49,7 @@ app.use(helmet.xssFilter());
 
 
 
-app.use(cors('*'));
+app.use(cors());
 
 app.use(morgan('combined'));
 app.use(express.json({limit: "10mb"}));
@@ -74,7 +74,7 @@ app.post('/uploadimagestoa', authCheckImageMiddleware, (req, res)=>{
             public_id: result.public_id
         })
     }, {
-        public_id: `${nanoId()}.${Date.now()}`,
+        public_id: `${nanoid()}.${Date.now()}`,
         resource_type:'auto'
     });
 });

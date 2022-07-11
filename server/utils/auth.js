@@ -27,7 +27,7 @@ module.exports= {
     authCheckImageMiddleware: (req, res, next) => {
       if(req.headers.authtoken){
         admin.auth().verifyIdToken(req.headers.authtoken)
-        .then((result) => {
+        .then(result => {
           next()
         })
         .catch(error => console.log(error))

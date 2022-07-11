@@ -2,19 +2,17 @@ const {gql} = require('apollo-server-express');
 
 module.exports= gql`
 
+    scalar Datetime
+
     type Image {
         url:String
         public_id:String
     }
 
-    type Video {
-        url:String
-        public_id:String
-    }
 
     type AwsVideo {
         videoName:String!
-        slug: String
+        slug:String
         description:String
         videoLink:String
     }
@@ -24,26 +22,43 @@ module.exports= gql`
         public_id:String
     }
 
+    type Education {
+        name:String
+        degree:String
+        startDate:Datetime
+        endDate:Datetime
+        specialization:String
+        location:String
+    }
+
+    type Resume {
+        url:String
+        public_id:String
+    }
+
+
+
     type Skill{
-        _id
-        name: String
+        _id:ID!
+        name:String
     }
 
     type Industry {
         _id:ID!
-        name: String
+        name:String!
         gicsCode:String
     }
 
         
     type User{
         _id: ID!
-        firstName: String!
+        firstName:String!
         lastName:String!
         userName:String!
         email:String!
         images:[Image]
         articles:[Article]
+        resumes:[Resume]
         videos:[AwsVideo]
         profileTextPargaraph:String
         profileTextPargaraph2: String
@@ -51,6 +66,7 @@ module.exports= gql`
         profileTextOptional2: String
         age: String
         title:String
+        education:[Education]
         diveristyText:String
         esgText:String
         phoneNumber:String
@@ -69,53 +85,77 @@ module.exports= gql`
         city:String
         stateLocation:String
         streetAddress:String
-        postalCode:String
-        zipCode:String
+        zipPostalCode:String
         skills: [Skill]
         connections:[String]
+        matchedJobs:[Job!]
+        saveForLater:[Job!]
+        appliedTo:[Job!]
+        savedJobCount: Int!
+        matchedJobCount: Int!
+        appliedToCount: Int!
+        daysActiveCount: Int!
     }
 
     input SkillInput {
-        name: String
+        name:String
+    }
+
+    input EducationInput {
+        name:String
+        degree:String
+        startDate:Datetime
+        endDate:Datetime
+        specialization:String
+        location:String
     }
 
     type CreateUserResponse {
         userName:String!
-        email: String!  
+        email:String!  
     }
 
     input ImageInput {
-        url: String
-        public_id: String
+        url:String
+        public_id:String
     }
 
     input VideoInput {
-        url: String
-        public_id: String
+        videoName:String!
+        slug:String
+        description:String
+        videoLink:String
     }
 
     input ArticleInput {
         url:String
-        public_id: String
+        public_id:String
+    }
+
+    input ResumeInput {
+        url:String
+        public_id:String
     }
 
     input IndustryInput {
-        name: String
+        name:String!
         gicsCode:String
     }
 
 
     input UpdateUserInput{
-        userName: String
-        email: String
-        firstName: String
-        lastName: String
+        userName:String
+        email:String
+        firstName:String
+        lastName:String
         age: String
-        birthday: Datetime
-        createdAt: Datetime
+        birthday:Datetime
+        createdAt:Datetime
+        education:[EducationInput]
         images:[ImageInput]
         videos:[VideoInput]
         articles:[ArticleInput]
+        resumes:[ResumeInput]
         profileTextPargaraph:String
         profileTextPargaraph2: String
         profileTextOptional:String
@@ -128,32 +168,35 @@ module.exports= gql`
         phoneNumber:String
         isPremium: Boolean
         isCompany: Boolean
-        entity:String
+        entity:[String]
         country:String
         city:String
         website:[String]
         stateLocation:String
         streetAddress:String
-        postalCode:String
-        zipCode:String
+        zipPostalCode:String
         skills:[SkillInput]
         role:[String]
     }
 
     type Query {
-        profile: User!
-        publicProfile(userName:String!): User!
-        allUsers: [User!]
-        applicants:[User]
-        candidates:[User]
-        matchedCandidates:[User]
+        profile:User!
+        publicProfile(userName: String!):User!
+        allUsers:[User!]
+        getJobApplicants(userId:String):[User!]
+        getJobCandidates(userId:String):[User!]
+        getMatchedCandidates(userId:String):[User!]
     }
 
 
-    type Mutation{
-        createUser: CreateUserResponse!
+    type Mutation {
+        createUser:CreateUserResponse!
+        deleteUserProfileFromJob(userId: String, jobId:String):User!
+        deleteUserProfile:User!
         updateUser(input: UpdateUserInput): User!
-        addConnection(userId: String!):User
+        applyToJob(jobId: String!): Job!
+        saveJob(jobId: String!): Job!
+        addConnection(userId: String!): User
     }
 
 

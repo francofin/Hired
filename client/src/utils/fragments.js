@@ -26,7 +26,15 @@ export const USER_INFO =gql`
         city
         stateLocation
         streetAddress
-        postalCode
+        zipPostalCode
+        education{
+            name
+            degree
+            startDate
+            endDate
+            location
+            specialization
+        }
         skills{
             name
         }
@@ -34,11 +42,11 @@ export const USER_INFO =gql`
             url
             public_id
         }
-        videos {
-        url
-        public_id
-        }
         articles {
+            url
+            public_id
+        }
+        resumes {
             url
             public_id
         }

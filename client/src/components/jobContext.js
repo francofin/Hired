@@ -1,6 +1,6 @@
 import omitDeep from 'omit-deep';
 import React, {createContext, useMemo, useState} from 'react';
-import {useQuery, gql} from '@apollo/client';
+
 
 
 const JobContext = createContext([{}, () => {}]);
@@ -18,13 +18,11 @@ const JobProvider = (props) => {
         descriptionOptional:'',
         descriptionOptional2:'',
         isCompany:false,
-        entity:'employee',
         city:'',
         stateLocation:'',
         country:'',
         streetAddress:'',
-        postalCode:'',
-        zipCode:'',
+        zipPostalCode:'',
         skills:[],
         positionFilled:false
     };
@@ -32,10 +30,11 @@ const JobProvider = (props) => {
     const [job, setJob] = useState(initialState);
 
     const resetJobState = () => {
-        setProfile(initialState)
+        setJob(initialState)
 
-        return profile
+        return job
     };
+
 
     useMemo(() => {
         setJob({
@@ -48,15 +47,13 @@ const JobProvider = (props) => {
             descriptionOptional:userJobs.descriptionOptional,
             descriptionOptional2:userJobs.descriptionOptional2,
             isCompany:faluserJobs.isCompany,
-            entity:userJobs.entity,
             city:userJobs.city,
             stateLocation:userJobs.stateLocation,
             country:userJobs.country,
             streetAddress:userJobs.streetAddress,
-            postalCode:userJobs.postalCode,
-            zipCode:userJobs.zipCode,
+            zipPostalCode:userJobs.postalCode,
             skills:userJobs.skills,
-            positionFilled:faluserJobs.positionFilled
+            positionFilled:userJobs.positionFilled
         })
     }, [])
 

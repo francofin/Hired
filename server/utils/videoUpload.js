@@ -12,12 +12,12 @@ const awsConfig = {
 const S3 = new AWS.S3(awsConfig);
 
 
-export const uploadVideoFromUser = async(req, res) => {
+const uploadVideoFromUser = async(req, res) => {
     try {
         const {video} = req.files;
         // console.log(video);
         if(!video){
-            return res.status(400).send("Video not uploaded")
+            res.status(400).send("Video not uploaded")
         }
         const params = {
             //create bucket for videos. 
@@ -40,12 +40,12 @@ export const uploadVideoFromUser = async(req, res) => {
     }
 }
 
-export const removeVideoFromUser = async(req, res) => {
+const removeVideoFromUser = async(req, res) => {
     try {
         const {Location, Bucket, Key} = req.body;
         // console.log(video);
         if(!Bucket || !Key){
-            return res.status(400).send("Video not Found")
+            res.status(400).send("Video not Found")
         }
         const params = {
             //create bucket for videos. 
@@ -63,4 +63,10 @@ export const removeVideoFromUser = async(req, res) => {
     } catch (err){
         console.log(err);
     }
+}
+
+
+module.exports = {
+    uploadVideoFromUser,
+    removeVideoFromUser
 }

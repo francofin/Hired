@@ -15,6 +15,7 @@ const ProfileProvider = (props) => {
         images:[],
         videos:[],
         articles:[],
+        education:[],
         profileTextPargaraph:'',
         profileTextPargaraph2:'',
         profileTextOptional:'',
@@ -36,8 +37,7 @@ const ProfileProvider = (props) => {
         stateLocation:'',
         country:'',
         streetAddress:'',
-        postalCode:'',
-        zipCode:'',
+        zipPostalCode:'',
         skills:[]
     };
 
@@ -64,6 +64,7 @@ const ProfileProvider = (props) => {
                 images:omitDeep(data.profile.images, ["__typename"]),
                 videos:data.profile.videos,
                 articles:data.profile.articles,
+                education:data.profile.education,
                 profileTextPargaraph:data.profile.profileTextPargaraph,
                 profileTextPargaraph2:data.profile.profileTextPargaraph2,
                 profileTextOptional:data.profile.profileTextOptional,
@@ -82,8 +83,7 @@ const ProfileProvider = (props) => {
                 stateLocation:data.profile.stateLocation,
                 country:data.profile.country,
                 streetAddress:data.profile.streetAddress,
-                postalCode:data.profile.postalCode,
-                zipCode:data.profile.zipCode, 
+                zipPostalCode:data.profile.postalCode,
                 website:data.profile.website,
                 title:data.profile.title,
                 skills:data.profile.skills

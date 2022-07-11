@@ -37,6 +37,15 @@ export const DELETE_JOB = gql`
     }
 `
 
+export const UPDATE_JOB = gql`
+    mutation updateJob($input: UpdateJobInput!) {
+      updateJob(input: $input){
+        ...jobInfo
+      }
+    }
+    ${JOB_INFO}
+`
+
 export const ADD_CONNECTION = gql`
     mutation addConnection($userId: String!){
       addConnection(userId: $userId){

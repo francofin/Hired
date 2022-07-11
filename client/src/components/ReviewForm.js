@@ -14,7 +14,7 @@ const ReviewForm = () => {
       </Button>
       <Collapse id="leaveReview" className="mt-4" in={reviewCollapse}>
         <div>
-          <h5 className="mb-4">Leave a review</h5>
+          <h5 className="mb-4">Your Inbox</h5>
           <Form className="form">
             <Row>
               <Col sm="6">
@@ -29,32 +29,6 @@ const ReviewForm = () => {
                   />
                 </div>
               </Col>
-              <Col sm="6">
-                <div className="mb-4">
-                  <Form.Label htmlFor="rating">Your name *</Form.Label>
-                  <Form.Select
-                    name="rating"
-                    id="rating"
-                    className="focus-shadow-0"
-                  >
-                    <option value="5">
-                      &#9733;&#9733;&#9733;&#9733;&#9733; (5/5)
-                    </option>
-                    <option value="4">
-                      &#9733;&#9733;&#9733;&#9733;&#9734; (4/5)
-                    </option>
-                    <option value="3">
-                      &#9733;&#9733;&#9733;&#9734;&#9734; (3/5)
-                    </option>
-                    <option value="2">
-                      &#9733;&#9733;&#9734;&#9734;&#9734; (2/5)
-                    </option>
-                    <option value="1">
-                      &#9733;&#9734;&#9734;&#9734;&#9734; (1/5)
-                    </option>
-                  </Form.Select>
-                </div>
-              </Col>
             </Row>
             <div className="mb-4">
               <Form.Label htmlFor="email">Your email *</Form.Label>
@@ -67,17 +41,17 @@ const ReviewForm = () => {
               />
             </div>
             <div className="mb-4">
-              <Form.Label htmlFor="review">Review text *</Form.Label>
+              <Form.Label htmlFor="review">Response</Form.Label>
               <Form.Control
-                rows="4"
+                rows="10"
                 type="textarea"
                 name="review"
                 id="review"
-                placeholder="Enter your  email"
+                placeholder="Enter your Message"
                 required
               />
             </div>
-            <Button type="submit">Post review</Button>
+            <Button type="submit">Submit</Button>
           </Form>
         </div>
       </Collapse>
