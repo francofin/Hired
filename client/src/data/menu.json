@@ -141,24 +141,16 @@
               "link": "/user-account"
             },
             {
-              "title": "Personal info - forms",
-              "link": "/user-personal"
+              "title": "Personal info",
+              "link": "/personal-info"
             },
             {
-              "title": "Password & security - forms",
+              "title": "Password & security",
               "link": "/user-security"
             },
             {
-              "title": "Booking process - 4 pages",
-              "link": "/user-booking-1"
-            },
-            {
-              "title": "Bookings - grid view",
-              "link": "/user-grid"
-            },
-            {
-              "title": "Booking detail",
-              "link": "/user-booking-detail"
+              "title": "Account Detail",
+              "link": "/account-detail"
             },
             {
               "title": "Messages",

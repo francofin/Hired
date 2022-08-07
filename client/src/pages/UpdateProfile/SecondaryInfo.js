@@ -11,6 +11,7 @@ const SecondaryInfo = () => {
     const [userProfile, setUserProfile] = useContext(ProfileContext);
 
     const [entityData, setEntityData] = useState(data[2]);
+    
 
     
 
@@ -25,6 +26,8 @@ const SecondaryInfo = () => {
         isEntity();
 
     }, [userProfile])
+
+    console.log(userProfile)
 
     const properties = {
         nav: {
@@ -52,7 +55,7 @@ const SecondaryInfo = () => {
           <ProfileForm
             data={entityData}
             prevStep="/basic-info"
-            nextStep="/user-add-3"
+            nextStep="/education-details"
           />
         </Container>
       </section>

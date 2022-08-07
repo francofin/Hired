@@ -1,50 +1,27 @@
-import swal from 'sweetalert';
-import React, {useContext, useState} from "react";
+import React from "react"
 import { Link } from 'react-router-dom';
-import data from "../data/user-add.json";
-import {ProgressBar, Image} from "../../components";
 import { Container, Button } from "react-bootstrap";
+import {Image, ProgressBar, Header, ProfileForm, ListingForm, ProfileContext} from "../../components";
+import data from "../../data/user-add.json";
 
 
-const CompleteProfileUpdate = () => {
 
-  const [loading, setLoading] = useState(false)
+const CompleteUpdate = () => {
 
-  const properties = {
-      nav: {
-        light: true,
-        classes: "shadow",
-        color: "white",
-      },
-      loggedUser: true,
-      title: "Submit Profile",
-      listingForm: true,
-  }
-  
+    const properties = {
+        nav: {
+          light: true,
+          classes: "shadow",
+          color: "white",
+        },
+        loggedUser: true,
+        title: "Add your listing",
+        listingForm: true,
+      }
 
-  // const [updateUser] = useMutation(UPDATE_USER, {
-  //     update: ({data}) => {
-  //       console.log('Update Mutation Called', data);
-  //       swal({
-  //         title: `Success, Your Profile has been updated`,
-  //         icon: "success",
-  //       });
-  //     }  
-  // })
+  const [userProfile, setUserProfile] = React.useContext(ProfileContext)
 
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setLoading(true)
-  //   updateUser({
-  //     variables:{
-  //       input: userProfile
-  //     }
-  //   })
-  //  setLoading(false)
-  // }
-  
-
+  console.log(userProfile)
   return (
     <React.Fragment>
       <ProgressBar progress={100} />
@@ -80,4 +57,4 @@ const CompleteProfileUpdate = () => {
   )
 }
 
-export default CompleteProfileUpdate
+export default CompleteUpdate

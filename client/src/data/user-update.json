@@ -2,7 +2,7 @@
   {
     "title": "Let's get started",
     "subtitle": "Let's Show the world who you are!",
-    "content": "<p class='text-muted'>We are here to serve you through your job search. Please do not hesitate, to reach us if you have any concerns.</p><p class='text-muted mb-5'>Thank You for choosing H!red and best of luck in your future endeavours.</p>",
+    "content": "<p class='text-muted'>We are here to serve you through your job search. Please do not hesitate, to reach us if you have any concerns.</p><p class='text-muted mb-5'>Thank You for choosing Impress!ons and best of luck in your future endeavours.</p>",
     "button": "Start the Show"
   },
   {
@@ -160,22 +160,21 @@
         "inputs": [
           {
             "label": "Describe your background, education and goals.",
-            "name": "form_description",
+            "name": "profileTextPargaraph",
             "type": "textarea",
             "helpId": "descriptionHelp"
           },
           {
             "label": "Describe your professional experience or any other relevant experience you'd like to share.",
-            "name": "form_availability",
+            "name": "profileTextPargaraph2",
             "type": "textarea",
             "helpId": "availabilityHelp"
           },
           {
-            "label": "Your neighbourhood",
-            "name": "form_neighbourhood",
+            "label": "Your Specialties",
+            "name": "profileTextOptional",
             "type": "textarea",
-            "helpId": "hoodHelp",
-            "help": "Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame."
+            "helpId": "hoodHelp"
           }
         ]
       }
@@ -183,7 +182,7 @@
   },
   {
     "title": "Corporate Information.",
-    "subtitle": "Add What you would want potential employees or anyone interested in your organization to know and understand about you.",
+    "subtitle": "Add What you would want potential employees or anyone interested in your skillset to know and understand about you.",
     "formBlocks": [
       {
         "title": "Description",
@@ -234,39 +233,46 @@
     ]
   },
   {
-    "title": "Disposition and Amenities",
-    "subtitle": "Add a new listing",
+    "title": "Education and SkillSet",
+    "subtitle": "Show us your intellectual capacity.",
     "formBlocks": [
       {
-        "title": "Rooms and beds",
-        "content": "The number and types of beds you have determines how many guests can stay comfortably",
+        "title": "Skills",
+        "content": "What Are your primary skill set",
         "inputs": [
+          {
+            "label": "Skill",
+            "name": "skill",
+            "type": "text",
+            "block":"skill",
+            "col":"6"
+          },
           {
             "type": "buttons",
             "buttons": [
                 {
-                    "label": "Beds",
+                    "label": "Add/Remove Skill",
                     "name": "form_beds"
-                },
-                {
-                    "label": "Bedrooms",
-                    "name": "form_bedrooms"
-                },
-                {
-                    "label": "Bathrooms",
-                    "name": "form_bathrooms"
                 }
-            ]
+            ],
+            "block":"skill"
           }
-        ]
-      },
+        ],
+        "isSkills":"skills" 
+      }
+    ]
+  },
+  {
+    "title": "Education and SkillSet",
+    "subtitle": "Show us your intellectual capacity.",
+    "formBlocks": [
       {
-        "title": "Amenities",
-        "content": "His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.",
+        "title": "Skills",
+        "content": "What Are your primary skill sets",
         "inputs": [
           {
             "type": "checkboxes",
-            "label": "Available Amenities",
+            "label": "Skills",
             "checkboxes": [
                 {
                     "label": "Kitchen",

@@ -11,7 +11,8 @@ import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import {Arwes,SoundsProvider,ThemeProvider,createSounds,createTheme} from "arwes";
 import {ApolloClient, InMemoryCache, ApolloProvider, concat, ApolloLink, HttpLink } from "@apollo/client";
 import {SignUp, Login, Home, Internships, UserProfile, CompleteSignUp, UserAccount, PersonalInfo,
-       UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo, UserListing, UserMessages} from "./pages";
+       UpdateSecurity, UpdateProfile, CreateJob, ForgotPassword, BasicInfo, SecondaryInfo, TertiaryInfo, UserListing, UserMessages, PhotoUpload, CompleteUpdate} from "./pages";
+
 
 
 
@@ -63,7 +64,10 @@ function App() {
             <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
             <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
             <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
+            <PrivateRoute exact path ="/education-details" component={TertiaryInfo} />
+            <PrivateRoute exact path ="/upload-photos" component={PhotoUpload} />
             <PrivateRoute exact path ="/user-messages" component={UserMessages} />
+            <PrivateRoute exact path ="/complete-profile" component={CompleteUpdate} />
             </Switch>
             </ProfileProvider>
           </>

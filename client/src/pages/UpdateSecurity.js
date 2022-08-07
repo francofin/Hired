@@ -1,7 +1,7 @@
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import {Icon, Header} from "../components";
-import data from "../data/user-security.json";
+import dataHeader from "../data/user-security.json";
 import {fireBaseAuth} from '../utils/firebase';
 import React, {useState, useContext} from "react";
 import { AuthContext } from '../utils/authContext';
@@ -99,11 +99,11 @@ const UpdateSecurity = () => {
                 <Breadcrumb listProps={{ className: "ps-0 justify-content-start" }}>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
                 <Breadcrumb.Item href="/account-detail">Account</Breadcrumb.Item>
-                <Breadcrumb.Item active>{data.title}</Breadcrumb.Item>
+                <Breadcrumb.Item active>{dataHeader.title}</Breadcrumb.Item>
                 </Breadcrumb>
 
-                <h1 className="hero-heading mb-0">{data.title}</h1>
-                <p className="text-muted mb-5">{data.subtitle}</p>
+                <h1 className="hero-heading mb-0">{dataHeader.title}</h1>
+                <p className="text-muted mb-5">{dataHeader.subtitle}</p>
                 <Row>
                 <Col lg="7">
                     <div className="text-block">

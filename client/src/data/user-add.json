@@ -274,16 +274,33 @@
   },
   {
     "title": "Photos",
-    "subtitle": "Add a new listing",
-    "content": "<p class='text-muted'>His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.</p><p class='text-muted mb-5'>Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>",
+    "subtitle": "Upload Your Banner Photo",
+    "content": "<p class='text-muted'>Add Some Shine to your profile.</p>",
     "formBlocks": [
         {
             "title": "Photos",
-            "content": "His room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table.",
+            "content": "Dont Worry, This is just a banner a random one will be chose if blank.",
             "inputs": [
                 {
-                    "type": "upload"
-                }
+                    "type": "upload",
+                    "name":"cover",
+                    "buttons": [
+                      {
+                          "label": "Add/Remove Image",
+                          "name": "form_beds"
+                      }
+                  ]
+                },
+                {
+                  "type": "upload",
+                  "name":"avatar",
+                  "buttons": [
+                    {
+                        "label": "Add/Remove Image",
+                        "name": "form_beds"
+                    }
+                ]
+              }
             ]
         }
     ]
@@ -300,6 +317,23 @@
         {
             "title": "Or something else",
             "link": "#"
+        }
+    ]
+  },
+  {
+    "title": "Photos",
+    "subtitle": "Upload Your Avatar",
+    "content": "<p class='text-muted'>This is your opportunity to proesent yourself in the image you imagine.</p>",
+    "formBlocks": [
+        {
+            "title": "Photos",
+            "content": "This is your opportunity to proesent yourself in the image you imagine.",
+            "inputs": [
+                {
+                    "type": "upload",
+                    "name":"avatar"
+                }
+            ]
         }
     ]
   }

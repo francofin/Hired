@@ -14,3 +14,7 @@ export {default as ForgotPassword } from './ForgotPassword';
 export {default as BasicInfo } from './UpdateProfile/BasicInfo';
 export {default as UserMessages } from './UserMessages';
 export {default as SecondaryInfo } from './UpdateProfile/SecondaryInfo';
+export {default as CorporateInfo } from './UpdateProfile/CorporateInfo';
+export {default as TertiaryInfo } from './UpdateProfile/TertiaryInfo';
+export {default as PhotoUpload } from './UpdateProfile/PhotoUpload';
+export {default as CompleteUpdate } from './UpdateProfile/CompleteUpdate';

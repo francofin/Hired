@@ -13,21 +13,15 @@ const {uploadVideoFromUser, removeVideoFromUser} = require('./utils/videoUpload'
 const { authCheckImageMiddleware } = require('./utils/auth');
 const formidableMiddleware  = require('express-formidable');
 
-const awsConfig = {
-    accessKeyId:process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey:process.env.AWS_SECRET_ACESS_KEY,
-    region: process.env.AWS_REGION,
-    apiVersion:process.env.AWS_API_VERSION
-};
 
 
 
 const S3 = new AWS.S3(awsConfig);
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET_API
+    cloud_name: `${process.env.CLOUDINARY_CLOUD_NAME}`,
+    api_key: `${process.env.CLOUDINARY_API_KEY}`,
+    api_secret: `${process.env.CLOUDINARY_SECRET_API}`
 })
 
 // app.use(helmet.contentSecurityPolicy());
@@ -66,7 +60,7 @@ app.get('/rest', function(req, res) {
 });
 
 
-app.post('/uploadimagestoa', authCheckImageMiddleware, (req, res)=>{
+app.post('/uploadimagestocloudinary', authCheckImageMiddleware, (req, res)=>{
     cloudinary.v2.uploader.upload(req.body.image, (result) => {
         console.log("Image Upload Result", result)
         res.send({
@@ -79,7 +73,13 @@ app.post('/uploadimagestoa', authCheckImageMiddleware, (req, res)=>{
     });
 });
 
-app.post('/removeimagesfroma',authCheckImageMiddleware, (req, res) => {
+
+
+
+
+
+
+app.post('/removeimagesfromcloudinary',authCheckImageMiddleware, (req, res) => {
     let imageId = req.body.public_id;
 
     cloudinary.v2.uploader.destroy(imageId, (error, result)=>{
