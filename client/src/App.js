@@ -55,20 +55,20 @@ function App() {
             <Route exact path ="/all-users" component = {UserListing} />
             <Route exact path ="/completeregistration" component = {CompleteSignUp} />
             <ProfileProvider>
-            <Switch>
-            <PrivateRoute exact path ="/profile" component = {UserProfile} />
-            <PrivateRoute exact path ="/account-detail" component={UserAccount} />
-            <PrivateRoute exact path ="/personal-info" component={PersonalInfo} />
-            <PrivateRoute exact path ="/user-security" component={UpdateSecurity} />
-            <PrivateRoute exact path ="/add-job-posting" component={CreateJob} />
-            <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
-            <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
-            <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
-            <PrivateRoute exact path ="/education-details" component={TertiaryInfo} />
-            <PrivateRoute exact path ="/upload-photos" component={PhotoUpload} />
-            <PrivateRoute exact path ="/user-messages" component={UserMessages} />
-            <PrivateRoute exact path ="/complete-profile" component={CompleteUpdate} />
-            </Switch>
+              <Switch>
+                <PrivateRoute exact path ="/profile" component = {UserProfile} />
+                <PrivateRoute exact path ="/account-detail" component={UserAccount} />
+                <PrivateRoute exact path ="/personal-info" component={PersonalInfo} />
+                <PrivateRoute exact path ="/user-security" component={UpdateSecurity} />
+                <PrivateRoute exact path ="/add-job-posting" component={CreateJob} />
+                <PrivateRoute exact path ="/update-profile-detail" component={UpdateProfile} />
+                <PrivateRoute exact path ="/basic-info" component={BasicInfo} />
+                <PrivateRoute exact path ="/personal-details" component={SecondaryInfo} />
+                <PrivateRoute exact path ="/education-details" component={TertiaryInfo} />
+                <PrivateRoute exact path ="/upload-photos" component={PhotoUpload} />
+                <PrivateRoute exact path ="/user-messages" component={UserMessages} />
+                <PrivateRoute exact path ="/complete-profile" component={CompleteUpdate} />
+              </Switch>
             </ProfileProvider>
           </>
         <Footer />

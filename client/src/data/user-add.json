@@ -306,17 +306,17 @@
     ]
   },
   {
-    "title": "Linsting uploaded",
-    "subtitle": "Add a new listing",
-    "content": "Thank you, Ondrej. Your listing has been saved and will be reviewed shortly.",
+    "title": "Confirm Updated Profile",
+    "subtitle": "Profile Update",
+    "content": "Thank you. Your Profile Has Been Updated. Thanks for being you.",
     "buttons": [
         {
-            "title": "Do something",
+            "title": "Save",
             "link": "#"
         },
         {
-            "title": "Or something else",
-            "link": "#"
+            "title": "Back",
+            "link": "/upload-photos"
         }
     ]
   },

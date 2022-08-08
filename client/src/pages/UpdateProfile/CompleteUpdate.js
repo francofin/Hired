@@ -23,6 +23,8 @@ const CompleteUpdate = () => {
 
   console.log(userProfile)
   return (
+    <div style={{paddingTop:'72px'}}>
+    <Header headerData={properties} />
     <React.Fragment>
       <ProgressBar progress={100} />
       <section className="py-5">
@@ -54,6 +56,7 @@ const CompleteUpdate = () => {
         </Container>
       </section>
     </React.Fragment>
+    </div>
   )
 }
 

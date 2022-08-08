@@ -19,10 +19,10 @@ const UserProfile = () => {
 
 
   const {state, dispatch} = useContext(AuthContext);
-  const {data:userProfileData} = useQuery(PROFILE);
+  const {data} = useQuery(PROFILE);
   // const {data:userJobPostings} = useQuery(USER_JOBS);
 
-  console.log("User Profile from Query", userProfileData)
+  console.log("User Profile from Query", data)
 
   const properties = {
     nav: {

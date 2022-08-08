@@ -13,16 +13,16 @@ const {uploadVideoFromUser, removeVideoFromUser} = require('./utils/videoUpload'
 const { authCheckImageMiddleware } = require('./utils/auth');
 const formidableMiddleware  = require('express-formidable');
 
+require('dotenv').config();
 
-
-
-const S3 = new AWS.S3(awsConfig);
 
 cloudinary.config({
-    cloud_name: `${process.env.CLOUDINARY_CLOUD_NAME}`,
-    api_key: `${process.env.CLOUDINARY_API_KEY}`,
-    api_secret: `${process.env.CLOUDINARY_SECRET_API}`
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET_API
 })
+
+app.use(cors());
 
 // app.use(helmet.contentSecurityPolicy());
 // app.use(helmet.crossOriginEmbedderPolicy());
@@ -43,7 +43,7 @@ app.use(helmet.xssFilter());
 
 
 
-app.use(cors());
+
 
 app.use(morgan('combined'));
 app.use(express.json({limit: "10mb"}));
@@ -61,7 +61,7 @@ app.get('/rest', function(req, res) {
 
 
 app.post('/uploadimagestocloudinary', authCheckImageMiddleware, (req, res)=>{
-    cloudinary.v2.uploader.upload(req.body.image, (result) => {
+    cloudinary.uploader.upload(req.body.image, (result) => {
         console.log("Image Upload Result", result)
         res.send({
             url: result.secure_url,
@@ -75,14 +75,10 @@ app.post('/uploadimagestocloudinary', authCheckImageMiddleware, (req, res)=>{
 
 
 
-
-
-
-
 app.post('/removeimagesfromcloudinary',authCheckImageMiddleware, (req, res) => {
     let imageId = req.body.public_id;
 
-    cloudinary.v2.uploader.destroy(imageId, (error, result)=>{
+    cloudinary.uploader.destroy(imageId, (error, result)=>{
         if(error){
             return res.json({success:false, error})
         }

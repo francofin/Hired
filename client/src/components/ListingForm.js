@@ -19,7 +19,8 @@ const ListingForm = (props) => {
   const {state} = useContext(AuthContext);
   const [skill, setSkill] = useState("Add Skill")
   const [value, setValue] = useState("")
-  const[location, setLocation] = useState("")
+  const[location, setLocation] = useState("");
+  const [previewImage, setPreviewImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userImages, setUserImages] = useState([]);;
   const [educationDetail, setEducationDetail] = useState({
@@ -61,23 +62,23 @@ const ListingForm = (props) => {
     console.log(userProfile)
   }
 
-  const fileResizerAndUpload = (e) => {
+  const fileResizerAndUpload = (file) => {
     let fileInput = false;
-    if (e.target.files[0]) {
+    // console.log(e.target)
+    console.log(file)
+    if (file) {
       fileInput = true;
     }
     if (fileInput) {
-      try {
         Resizer.imageFileResizer(
-          e.target.files[0],
+          file,
           300,
           300,
           "JPEG",
           100,
           0,
           (uri) => {
-            console.log(uri);
-            // 
+            console.log(uri)
             axios.post(`${process.env.REACT_APP_CLOUDINARYUPLOAD_ENDPOINT}/uploadimagestocloudinary`, {image: uri}, {
               headers:{
                 authtoken:state.user.token,
@@ -90,9 +91,10 @@ const ListingForm = (props) => {
                 title: `Image Successfully Uploaded`,
                 icon: "success",
               });
+              console.log(userProfile)
             }).catch(error => {
               setLoading(false)
-              console.log("Upload to Cloudinary failed");
+              console.log("Upload to Cloudinary failed", error);
               swal({
                 title: `Image Upload Failed, Please try again`,
                 icon: "error",
@@ -100,14 +102,11 @@ const ListingForm = (props) => {
             })
           },
           "base64",
-          200,
-          200
         );
-      } catch (err) {
-        console.log(err);
-      }
     }
   }
+
+  
 
   const handleImageRemove = (id) => {
     setLoading(true);
@@ -132,25 +131,29 @@ const ListingForm = (props) => {
   }
 
 
-  
-
-  console.log(educationDetail)
 
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      setUserImages([...userImages, acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
+      console.log(acceptedFiles);
+      
+      setUserImages([...userImages, acceptedFiles])
+      setPreviewImages([...previewImage, acceptedFiles.map((file) => {
+        
+        fileResizerAndUpload(file);
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      }
         ),
       ])
     },
   })
 
 
-  console.log(userImages)
+  console.log(userImages);
+  console.log(userProfile)
   
 
   const onChange = (e) => {
@@ -400,7 +403,7 @@ const ListingForm = (props) => {
                     ))}
                   </Row>
                 )}
-                {input.type === "upload" && input.buttons[0].label === "Add/Remove Image" &&(
+                {/* {input.type === "upload" && input.buttons[0].label === "Add/Remove Image" &&(
                   <Row>
                     {input.buttons.map((button) => (
                       <Col lg="4" key={button.name}>
@@ -422,7 +425,7 @@ const ListingForm = (props) => {
                           <Button
                             variant="items"
                             className="btn-item-increase"
-                            onClick={fileResizerAndUpload}
+                            onClick={(e) => fileResizerAndUpload(e)}
                           >
                             +
                           </Button>
@@ -430,7 +433,7 @@ const ListingForm = (props) => {
                       </Col>
                     ))}
                   </Row>
-                )}
+                )} */}
                 {input.type === "checkboxes" && (
                   <div className="mb-4">
                     <Form.Label>{input.label}</Form.Label>
@@ -456,18 +459,18 @@ const ListingForm = (props) => {
                     <div
                       {...getRootProps({ className: "dropzone dz-clickable" })}
                     >
-                      <input {...getInputProps()} />
+                      <input {...getInputProps()}/>
                       <div className="dz-message text-muted">
                         <p>Banner Photo</p>
                         <p>
                           <span className="note">
-                            (Uploaded Files)
+                            (Upload Banner)
                           </span>
                         </p>
                       </div>
                     </div>
                     <Row className="mt-4">
-                      {userImages[0] &&
+                      {userImages.length>0 &&
                         userImages[0].map((file, i) => (
                           <div key={i} className="col-lg-4">
                             <div>
@@ -486,12 +489,12 @@ const ListingForm = (props) => {
                     <div
                       {...getRootProps({ className: "dropzone dz-clickable" })}
                     >
-                      <input {...getInputProps()} />
+                      <input {...getInputProps()}/>
                       <div className="dz-message text-muted">
                         <p>Drop files here or click to upload.</p>
                         <p>
                           <span className="note">
-                            (Upload Avatar.)
+                            (Upload Avatar)
                           </span>
                         </p>
                       </div>

@@ -13,6 +13,8 @@ const createUser = async(parent, args, {req}) => {
     }).save();
 }
 
+//Add delete User
+
 const profile = async(parent, args, {req}) => {
     const currentUser = await authMiddleware({req});
     const user  = await User.findOne({email: currentUser.email});
@@ -27,7 +29,6 @@ const publicProfile = async(parent, args, {req}) => {
 
 const updateUser = async(parent, args, {req}) => {
     const currentUser = await authMiddleware({req});
-    console.group(args)
     const updatedUser  = await User.findOneAndUpdate({email: currentUser.email}, {...args.input}, {new:true}).exec();
     return updatedUser 
 }
