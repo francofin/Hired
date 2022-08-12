@@ -27,25 +27,25 @@ const Home = () => {
     title: "Homepage",
   }
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const techNewsURL = `${process.env.REACT_APP_NEWS_API}technology&count=100&mkt=en-us`;
-    const azureHeaders = {
-      "Ocp-Apim-Subscription-Key": process.env.REACT_APP_AZURE_BING_KEY,
-    }
-    const fetchTechNews = async() => {
-      const response = await axios.get(techNewsURL, {
-        headers:{
-          "Ocp-Apim-Subscription-Key":process.env.REACT_APP_AZURE_BING_KEY
-        }
-      });
-      console.log("My Bing Response", response);
-    }
+  //   const techNewsURL = `${process.env.REACT_APP_NEWS_API}technology&count=100&mkt=en-us`;
+  //   const azureHeaders = {
+  //     "Ocp-Apim-Subscription-Key": process.env.REACT_APP_AZURE_BING_KEY,
+  //   }
+  //   const fetchTechNews = async() => {
+  //     const response = await axios.get(techNewsURL, {
+  //       headers:{
+  //         "Ocp-Apim-Subscription-Key":process.env.REACT_APP_AZURE_BING_KEY
+  //       }
+  //     });
+  //     console.log("My Bing Response", response);
+  //   }
 
-    fetchTechNews();
+  //   fetchTechNews();
     
 
-  }, [])
+  // }, [])
 
   const {state, dispatch} = useContext(AuthContext);
 

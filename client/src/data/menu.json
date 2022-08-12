@@ -22,6 +22,32 @@
     "showToLoggedUser": true
   },
   {
+    "title": "News",
+    "dropdown": [
+      {
+        "title": "Technology",
+        "link": "/technology"
+      },
+      {
+        "title": "Finance and Business",
+        "link": "/"
+      },
+      {
+        "title": "Markets",
+        "link": "/index-2"
+      },
+      {
+        "title": "Industry Specific",
+        "link": "/index-3"
+      },
+      {
+        "title": "LifeStyle",
+        "link": "/index-4"
+      }
+    ],
+    "showToLoggedUser": true
+  },
+  {
     "title": "User DashBoard",
     "position": "static",
     "megamenu": [

@@ -11,7 +11,7 @@ module.exports= gql`
 
 
     type AwsVideo {
-        videoName:String!
+        videoName:String
         slug:String
         description:String
         videoLink:String
@@ -52,10 +52,10 @@ module.exports= gql`
         
     type User{
         _id: ID!
-        firstName:String!
-        lastName:String!
-        userName:String!
-        email:String!
+        firstName:String
+        lastName:String
+        userName:String
+        email:String
         images:[Image]
         articles:[Article]
         resumes:[Resume]
@@ -80,7 +80,7 @@ module.exports= gql`
         companyName:String
         companyEmail:String
         website:[String]
-        entity:String
+        entity:[String]
         country:String
         city:String
         stateLocation:String
@@ -91,10 +91,10 @@ module.exports= gql`
         matchedJobs:[Job!]
         saveForLater:[Job!]
         appliedTo:[Job!]
-        savedJobCount: Int!
-        matchedJobCount: Int!
-        appliedToCount: Int!
-        daysActiveCount: Int!
+        savedJobCount: Int
+        matchedJobCount: Int
+        appliedToCount: Int
+        daysActiveCount: Int
     }
 
     input SkillInput {

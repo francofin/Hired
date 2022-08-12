@@ -19,10 +19,10 @@ const UserProfile = () => {
 
 
   const {state, dispatch} = useContext(AuthContext);
-  const {data} = useQuery(PROFILE);
+  const {data:userProfile} = useQuery(PROFILE);
   // const {data:userJobPostings} = useQuery(USER_JOBS);
 
-  console.log("User Profile from Query", data)
+  console.log("User Profile from Query", userProfile)
 
   const properties = {
     nav: {
@@ -72,7 +72,7 @@ const UserProfile = () => {
                     <div className="position-relative h-100 overflow-hidden rounded-circle">
                     <span className="custom-profile-image">
                       <Image
-                        src={`/content/img/avatar/${data.avatar}`}
+                        src={`${userProfile && userProfile.profile.images[0].url}`}
                         alt=""
                         width={144}
                         height={144}
@@ -96,7 +96,7 @@ const UserProfile = () => {
                     />
                   </div>
                   <div>
-                    <p className="mb-0">{data.reviewsnumber} reviews</p>
+                    <p className="mb-0">{userProfile && userProfile.profile.email}</p>
                   </div>
                 </div>
                 <div className="d-flex align-items-center mb-3">

@@ -18,3 +18,4 @@ export {default as CorporateInfo } from './UpdateProfile/CorporateInfo';
 export {default as TertiaryInfo } from './UpdateProfile/TertiaryInfo';
 export {default as PhotoUpload } from './UpdateProfile/PhotoUpload';
 export {default as CompleteUpdate } from './UpdateProfile/CompleteUpdate';
+export {default as TechNews } from './TechNews';
